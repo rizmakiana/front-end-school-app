@@ -56,20 +56,21 @@ public class TeacherDashboardView extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         scorePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        scoreTable = new javax.swing.JTable();
+        scorePanelSectionList = new javax.swing.JComboBox<>();
+        scorePanelPrintButton = new javax.swing.JButton();
+        scorePanelSaveButton = new javax.swing.JButton();
         presencePanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        presenceTable = new javax.swing.JTable();
+        presencePanelSaveButton = new javax.swing.JButton();
+        presencePanelSectionList = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         presenceRecapPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        presenceRecapTable = new javax.swing.JTable();
+        presenceRecapPanelPrintButton = new javax.swing.JButton();
+        presenceRecapSectionList = new javax.swing.JComboBox<>();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -130,7 +131,7 @@ public class TeacherDashboardView extends javax.swing.JFrame {
 
         scorePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        scoreTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -141,24 +142,24 @@ public class TeacherDashboardView extends javax.swing.JFrame {
                 "ID", "Name", "Task score", "Mid Test Score", "Last Test Score", "Final Score"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(scoreTable);
 
         scorePanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1200, 520));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        scorePanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 15, 200, -1));
+        scorePanelSectionList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ilmu Pengetahuan Alam 10 A" }));
+        scorePanel.add(scorePanelSectionList, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 15, 230, -1));
 
-        jButton1.setText("jButton1");
-        scorePanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 15, 100, -1));
+        scorePanelPrintButton.setText("jButton1");
+        scorePanel.add(scorePanelPrintButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 15, 100, -1));
 
-        jButton2.setText("jButton2");
-        scorePanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1015, 15, 100, -1));
+        scorePanelSaveButton.setText("jButton2");
+        scorePanel.add(scorePanelSaveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1015, 15, 100, -1));
 
         jTabbedPane1.addTab("tab1", scorePanel);
 
         presencePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        presenceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -177,21 +178,24 @@ public class TeacherDashboardView extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(presenceTable);
 
         presencePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1200, 520));
 
-        jButton3.setText("jButton3");
-        presencePanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 15, 100, -1));
+        presencePanelSaveButton.setText("jButton3");
+        presencePanel.add(presencePanelSaveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 15, 100, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        presencePanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(915, 15, 200, -1));
+        presencePanelSectionList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ilmu Pengetahuan Alam 10 A" }));
+        presencePanel.add(presencePanelSectionList, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 15, 240, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pertemuan 1" }));
+        presencePanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 15, 140, -1));
 
         jTabbedPane1.addTab("tab2", presencePanel);
 
         presenceRecapPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        presenceRecapTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -217,60 +221,60 @@ public class TeacherDashboardView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable3);
-        if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(0).setResizable(false);
-            jTable3.getColumnModel().getColumn(0).setPreferredWidth(120);
-            jTable3.getColumnModel().getColumn(1).setResizable(false);
-            jTable3.getColumnModel().getColumn(1).setPreferredWidth(200);
-            jTable3.getColumnModel().getColumn(2).setResizable(false);
-            jTable3.getColumnModel().getColumn(2).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(3).setResizable(false);
-            jTable3.getColumnModel().getColumn(3).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(4).setResizable(false);
-            jTable3.getColumnModel().getColumn(4).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(5).setResizable(false);
-            jTable3.getColumnModel().getColumn(5).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(6).setResizable(false);
-            jTable3.getColumnModel().getColumn(6).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(7).setResizable(false);
-            jTable3.getColumnModel().getColumn(7).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(8).setResizable(false);
-            jTable3.getColumnModel().getColumn(8).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(9).setResizable(false);
-            jTable3.getColumnModel().getColumn(9).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(10).setResizable(false);
-            jTable3.getColumnModel().getColumn(10).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(11).setResizable(false);
-            jTable3.getColumnModel().getColumn(11).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(12).setResizable(false);
-            jTable3.getColumnModel().getColumn(12).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(13).setResizable(false);
-            jTable3.getColumnModel().getColumn(13).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(14).setResizable(false);
-            jTable3.getColumnModel().getColumn(14).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(15).setResizable(false);
-            jTable3.getColumnModel().getColumn(15).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(16).setResizable(false);
-            jTable3.getColumnModel().getColumn(16).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(17).setResizable(false);
-            jTable3.getColumnModel().getColumn(17).setPreferredWidth(20);
-            jTable3.getColumnModel().getColumn(18).setResizable(false);
-            jTable3.getColumnModel().getColumn(19).setResizable(false);
+        jScrollPane3.setViewportView(presenceRecapTable);
+        if (presenceRecapTable.getColumnModel().getColumnCount() > 0) {
+            presenceRecapTable.getColumnModel().getColumn(0).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(0).setPreferredWidth(120);
+            presenceRecapTable.getColumnModel().getColumn(1).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            presenceRecapTable.getColumnModel().getColumn(2).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(2).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(3).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(3).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(4).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(4).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(5).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(5).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(6).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(6).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(7).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(7).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(8).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(8).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(9).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(9).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(10).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(10).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(11).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(11).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(12).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(12).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(13).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(13).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(14).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(14).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(15).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(15).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(16).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(16).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(17).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(17).setPreferredWidth(20);
+            presenceRecapTable.getColumnModel().getColumn(18).setResizable(false);
+            presenceRecapTable.getColumnModel().getColumn(19).setResizable(false);
         }
 
         presenceRecapPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1190, 510));
 
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        presenceRecapPanelPrintButton.setText("jButton4");
+        presenceRecapPanelPrintButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                presenceRecapPanelPrintButtonActionPerformed(evt);
             }
         });
-        presenceRecapPanel.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 15, 100, -1));
+        presenceRecapPanel.add(presenceRecapPanelPrintButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 15, 100, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        presenceRecapPanel.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 15, 200, -1));
+        presenceRecapSectionList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ilmu Pengetahuan Alam 10 A" }));
+        presenceRecapPanel.add(presenceRecapSectionList, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 15, 240, -1));
 
         jTabbedPane1.addTab("tab3", presenceRecapPanel);
 
@@ -401,7 +405,7 @@ public class TeacherDashboardView extends javax.swing.JFrame {
 
         layer.add(settingPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 440, 600));
 
-        getContentPane().add(layer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+        getContentPane().add(layer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -447,7 +451,7 @@ public class TeacherDashboardView extends javax.swing.JFrame {
     private void setUpPresenceRecapTable() {
         // kolom 2 s/d 17 = pertemuan (pakai tri-state checkbox)
         for (int i = 2; i < 18; i++) {
-            TableColumn column = jTable3.getColumnModel().getColumn(i);
+            TableColumn column = presenceRecapTable.getColumnModel().getColumn(i);
 
             // Editor: tri-state
             column.setCellEditor(new DefaultCellEditor(new FlatTriStateCheckBox()));
@@ -474,14 +478,14 @@ public class TeacherDashboardView extends javax.swing.JFrame {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jTable3.getColumnModel().getColumn(18).setCellRenderer(centerRenderer); // "5/8"
-        jTable3.getColumnModel().getColumn(19).setCellRenderer(centerRenderer); // "62%"
+        presenceRecapTable.getColumnModel().getColumn(18).setCellRenderer(centerRenderer); // "5/8"
+        presenceRecapTable.getColumnModel().getColumn(19).setCellRenderer(centerRenderer); // "62%"
     }
 
 
     
-    private void loadPresenceRecapData() {
-        DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+    private void loadPresenceRecapDataDummy() {
+        DefaultTableModel model = (DefaultTableModel) presenceRecapTable.getModel();
         model.setRowCount(0); // clear dulu
 
         for (int i = 1; i <= 30; i++) {
@@ -520,11 +524,11 @@ public class TeacherDashboardView extends javax.swing.JFrame {
         }
     }
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void presenceRecapPanelPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presenceRecapPanelPrintButtonActionPerformed
         
         System.out.println("Triggered");
         int total = 0;
-        TableColumnModel model = jTable3.getColumnModel();
+        TableColumnModel model = presenceRecapTable.getColumnModel();
         for(int i = 0; i < model.getColumnCount(); i++ ){
             int k = model.getColumn(i).getWidth();
             String f = (String) model.getColumn(i).getHeaderValue();
@@ -533,7 +537,7 @@ public class TeacherDashboardView extends javax.swing.JFrame {
         }
         System.out.println("total = " + total);
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_presenceRecapPanelPrintButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
 
@@ -613,6 +617,55 @@ public class TeacherDashboardView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_settingPanelPasswordFieldKeyReleased
 
+    private void setUpHeaderScoreTable(){
+        String[] header = new String[]{
+            setInternationalization("student.id"),
+            setInternationalization("name"),
+            setInternationalization("task.score"),
+            setInternationalization("mid.test.score"),
+            setInternationalization("last.test.score"),
+            setInternationalization("final.score")
+        };
+        
+        TableColumnModel model = scoreTable.getColumnModel();
+        for (int i = 0; i < header.length; i++){
+            model.getColumn(i).setHeaderValue(header[i]);
+        }
+    }
+    
+    private void setUpHeaderPresenceTable(){
+        String[] header = new String[]{
+            setInternationalization("student.id"),
+            setInternationalization("name"),
+            setInternationalization("presence")
+        };
+        
+        TableColumnModel model = presenceTable.getColumnModel();
+        for (int i = 0; i < header.length; i++){
+            model.getColumn(i).setHeaderValue(header[i]);
+        }
+    }
+    
+    private void setUpHeaderRecapPresenceTable(){
+        String[] header = new String[]{
+            setInternationalization("student.id"),
+            setInternationalization("name"),
+            setInternationalization("presence"),
+            setInternationalization("percent")
+        };
+        int k = 0;
+        TableColumnModel model = presenceRecapTable.getColumnModel();
+        for (int i = 0; i < 2; i++){
+            model.getColumn(i).setHeaderValue(header[i]);
+            k++;
+        }
+        for (int i = 18; i < 20; i++){
+            model.getColumn(i).setHeaderValue(header[k]);
+            k++;
+        }
+        
+    }
+    
     public String setInternationalization(String key) {
 
         ResourceBundle bundle = ResourceBundle.getBundle("message", AppManager.getLocale());
@@ -639,6 +692,24 @@ public class TeacherDashboardView extends javax.swing.JFrame {
         
         jTabbedPane2.setTitleAt(0, setInternationalization("presence.recap"));
         jTabbedPane2.setTitleAt(1, setInternationalization("score.recap"));
+        
+        boolean isLightMode = AppManager.getLightMode();
+        if (isLightMode) {
+            jToggleButton8.setText(setInternationalization("darkTheme"));
+        } else {
+            jToggleButton8.setText(setInternationalization("lightTheme"));
+        }
+        
+        scorePanelSaveButton.setText(setInternationalization("save"));
+        scorePanelPrintButton.setText(setInternationalization("print"));
+        
+        presencePanelSaveButton.setText(setInternationalization("save"));
+        
+        presenceRecapPanelPrintButton.setText(setInternationalization("print"));
+        
+        setUpHeaderScoreTable();
+        setUpHeaderPresenceTable();
+        setUpHeaderRecapPresenceTable();
         
     }
     
@@ -668,19 +739,13 @@ public class TeacherDashboardView extends javax.swing.JFrame {
         settingPanel.setVisible(false);
         
         setUpPresenceRecapTable();
-        loadPresenceRecapData();
+        loadPresenceRecapDataDummy();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -693,15 +758,22 @@ public class TeacherDashboardView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JDesktopPane layer;
     private javax.swing.JLabel myProfile;
     private javax.swing.JPanel presencePanel;
+    private javax.swing.JButton presencePanelSaveButton;
+    private javax.swing.JComboBox<String> presencePanelSectionList;
     private javax.swing.JPanel presenceRecapPanel;
+    private javax.swing.JButton presenceRecapPanelPrintButton;
+    private javax.swing.JComboBox<String> presenceRecapSectionList;
+    private javax.swing.JTable presenceRecapTable;
+    private javax.swing.JTable presenceTable;
     private javax.swing.JPanel scorePanel;
+    private javax.swing.JButton scorePanelPrintButton;
+    private javax.swing.JButton scorePanelSaveButton;
+    private javax.swing.JComboBox<String> scorePanelSectionList;
+    private javax.swing.JTable scoreTable;
     private javax.swing.JInternalFrame settingPanel;
     private javax.swing.JLabel settingPanelBirthplaceLabel;
     private javax.swing.JPasswordField settingPanelConfirmNewPassword;

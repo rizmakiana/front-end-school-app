@@ -15,6 +15,7 @@ com/unindra/school/app/view/staff/StaffDashboardView$11.class
 com/unindra/school/app/view/staff/StaffDashboardView$8.class
 com/unindra/school/app/view/staff/StaffLoginView$2.class
 com/unindra/school/app/view/staff/StaffLoginView$5.class
+com/unindra/school/app/view/teacher/TeacherLoginView$10.class
 com/unindra/school/app/view/teacher/TeacherLoginView$1.class
 com/unindra/school/app/view/staff/StaffDashboardView$5.class
 com/unindra/school/app/entity/DistrictResponse.class
@@ -31,6 +32,7 @@ com/unindra/school/app/view/staff/StaffDashboardView$6.class
 com/unindra/school/app/view/staff/StaffDashboardView$13.class
 com/unindra/school/app/view/teacher/TeacherLoginView$3.class
 com/unindra/school/app/view/teacher/TeacherDashboardView$8.class
+com/unindra/school/app/view/teacher/TeacherLoginView$9.class
 com/unindra/school/app/view/staff/StaffDashboardView$24.class
 com/unindra/school/app/view/SelectRoleView$1.class
 com/unindra/school/app/view/teacher/TeacherDashboardView$2.class

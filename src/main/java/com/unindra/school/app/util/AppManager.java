@@ -28,7 +28,15 @@ public class AppManager {
     
     private final static String webName = "http://localhost:8080";
     
+    private final static char defaultPasswordChar = '•';
+    
     private static TokenResponse token;
+
+    public static char getDefaultPasswordChar() {
+        return defaultPasswordChar;
+    }
+    
+    
 
     public static void setToken(TokenResponse token) {
         AppManager.token = token;

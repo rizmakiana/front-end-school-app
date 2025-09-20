@@ -136,6 +136,7 @@ public class TeacherDashboardView extends javax.swing.JFrame {
 
         scorePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        scoreTable.setAutoCreateRowSorter(true);
         scoreTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -228,6 +229,7 @@ public class TeacherDashboardView extends javax.swing.JFrame {
 
         presenceRecapPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        presenceRecapTable.setAutoCreateRowSorter(true);
         presenceRecapTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -313,6 +315,7 @@ public class TeacherDashboardView extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -338,6 +341,7 @@ public class TeacherDashboardView extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable2.setAutoCreateRowSorter(true);
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

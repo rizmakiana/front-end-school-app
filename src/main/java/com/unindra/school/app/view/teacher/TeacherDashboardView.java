@@ -25,7 +25,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -147,8 +146,24 @@ public class TeacherDashboardView extends javax.swing.JFrame {
             new String [] {
                 "ID", "Name", "Task score", "Mid Test Score", "Last Test Score", "Final Score"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(scoreTable);
+        if (scoreTable.getColumnModel().getColumnCount() > 0) {
+            scoreTable.getColumnModel().getColumn(0).setResizable(false);
+            scoreTable.getColumnModel().getColumn(1).setResizable(false);
+            scoreTable.getColumnModel().getColumn(2).setResizable(false);
+            scoreTable.getColumnModel().getColumn(3).setResizable(false);
+            scoreTable.getColumnModel().getColumn(4).setResizable(false);
+            scoreTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         scorePanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1200, 520));
 
@@ -179,12 +194,24 @@ public class TeacherDashboardView extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane2.setViewportView(presenceTable);
+        if (presenceTable.getColumnModel().getColumnCount() > 0) {
+            presenceTable.getColumnModel().getColumn(0).setResizable(false);
+            presenceTable.getColumnModel().getColumn(1).setResizable(false);
+            presenceTable.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         presencePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1200, 520));
 

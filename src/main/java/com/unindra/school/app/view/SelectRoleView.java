@@ -8,6 +8,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import com.formdev.flatlaf.util.SystemInfo;
 import com.unindra.school.app.util.AppManager;
 import com.unindra.school.app.view.staff.StaffLoginView;
 import com.unindra.school.app.view.teacher.TeacherLoginView;
@@ -22,6 +23,8 @@ import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -67,6 +70,8 @@ public class SelectRoleView extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(corner, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 710, 10, 10));
 
@@ -306,7 +311,7 @@ public class SelectRoleView extends javax.swing.JFrame {
     }
 
     public void generateComponent() {
-        initComponents();
+        initComponents();   
         initInternationalization();
         setLocationRelativeTo(null);
         setImage(image);

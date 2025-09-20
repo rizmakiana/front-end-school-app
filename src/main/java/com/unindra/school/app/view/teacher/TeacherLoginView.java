@@ -70,27 +70,38 @@ public class TeacherLoginView extends javax.swing.JFrame {
         signInPasswordLabel = new javax.swing.JLabel();
         signInShowPassword = new javax.swing.JCheckBox();
         registerPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        corner = new javax.swing.JLabel();
+        registerLabel = new javax.swing.JLabel();
+        registerNameLabel = new javax.swing.JLabel();
         registerNameField = new javax.swing.JTextField();
+        registerGenderLabel = new javax.swing.JLabel();
         registerGenderField = new javax.swing.JComboBox<>();
-        registerUsernameField = new javax.swing.JTextField();
-        registerPasswordField = new javax.swing.JPasswordField();
-        registerRePasswordField = new javax.swing.JPasswordField();
+        registerBirthplaceLabel = new javax.swing.JLabel();
+        registerBirthdateLabel = new javax.swing.JLabel();
         registerDateField = new javax.swing.JComboBox<>();
         registerMonthField = new javax.swing.JComboBox<>();
         registerYearField = new javax.swing.JComboBox<>();
-        registerEmail = new javax.swing.JTextField();
-        registerPhoneNumber = new javax.swing.JTextField();
-        registerButton = new javax.swing.JButton();
-        registerLabel = new javax.swing.JLabel();
-        provinceField = new com.unindra.school.app.components.RegionComboBox();
-        regencyField = new com.unindra.school.app.components.RegionComboBox();
-        districtField = new com.unindra.school.app.components.RegionComboBox();
-        villageField = new com.unindra.school.app.components.RegionComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        registerAddress = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
+        registerUsernameField = new javax.swing.JTextField();
+        registerAddressLabel = new javax.swing.JLabel();
+        registerPasswordField = new javax.swing.JPasswordField();
+        registerConfirmPasswordField = new javax.swing.JPasswordField();
+        registerPasswordLabel = new javax.swing.JLabel();
+        registerConfirmPasswordLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jPanel3 = new javax.swing.JPanel();
+        registerAddressField = new javax.swing.JTextArea();
+        registerUsernameLabel = new javax.swing.JLabel();
+        registerEmailField = new javax.swing.JTextField();
+        registerPhoneNumberField = new javax.swing.JTextField();
+        registerEmailLabel = new javax.swing.JLabel();
+        registerPhoneNumberLabel = new javax.swing.JLabel();
+        registerButton = new javax.swing.JButton();
+        registerProvinceBirthplace = new com.unindra.school.app.components.RegionComboBox();
+        registerRegencyBirthplace = new com.unindra.school.app.components.RegionComboBox();
+        registerAddressProvinceField = new com.unindra.school.app.components.RegionComboBox();
+        registerAddressRegencyField = new com.unindra.school.app.components.RegionComboBox();
+        registerAddressDistrictField = new com.unindra.school.app.components.RegionComboBox();
         setting = new javax.swing.JToggleButton();
         back = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -133,79 +144,101 @@ public class TeacherLoginView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab1", signInPanel);
 
-        registerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        registerPanel.add(registerNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 125, 218, 35));
-        registerPanel.add(registerGenderField, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 125, 127, 35));
-        registerPanel.add(registerUsernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 165, 350, 35));
-        registerPanel.add(registerPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 205, 173, 35));
-        registerPanel.add(registerRePasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 205, 172, 35));
-        registerPanel.add(registerDateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 440, 114, 35));
-        registerPanel.add(registerMonthField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 113, 35));
-        registerPanel.add(registerYearField, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 440, 114, 35));
-        registerPanel.add(registerEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 480, 173, 35));
-        registerPanel.add(registerPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 480, 172, 35));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setViewportView(jPanel1);
 
-        registerButton.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
-            }
-        });
-        registerPanel.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 550, 350, 35));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(corner, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 800, -1, -1));
 
         registerLabel.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         registerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        registerPanel.add(registerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 50, 250, 40));
+        jPanel1.add(registerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 30, 250, 40));
 
-        provinceField.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                provinceFieldItemStateChanged(evt);
+        registerNameLabel.setText("jLabel2");
+        jPanel1.add(registerNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 105, 150, -1));
+
+        registerNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                registerNameFieldKeyReleased(evt);
             }
         });
-        registerPanel.add(provinceField, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 245, 350, 35));
+        jPanel1.add(registerNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 125, 220, 35));
 
-        regencyField.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                regencyFieldItemStateChanged(evt);
-            }
-        });
-        registerPanel.add(regencyField, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 285, 173, 35));
-        registerPanel.add(districtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 285, 173, 35));
-        registerPanel.add(villageField, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 325, 350, 35));
+        registerGenderLabel.setText("label");
+        jPanel1.add(registerGenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 105, 120, -1));
+        jPanel1.add(registerGenderField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 125, 130, 35));
 
-        registerAddress.setColumns(20);
-        registerAddress.setLineWrap(true);
-        registerAddress.setRows(5);
-        registerAddress.setToolTipText("Test");
-        registerAddress.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(registerAddress);
+        registerBirthplaceLabel.setText("jLabel1");
+        jPanel1.add(registerBirthplaceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 165, 150, -1));
 
-        registerPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 365, 350, 70));
+        registerBirthdateLabel.setText("jLabel1");
+        jPanel1.add(registerBirthdateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 225, 150, -1));
 
-        jTabbedPane1.addTab("tab2", registerPanel);
+        registerDateField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(registerDateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 245, 80, 35));
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        registerMonthField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(registerMonthField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 245, 170, 35));
 
-        jScrollPane3.setBorder(null);
-        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane3.setViewportView(jPanel3);
+        registerYearField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(registerYearField, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 245, 95, 35));
+        jPanel1.add(registerUsernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 510, 355, 35));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
+        registerAddressLabel.setText("jLabel1");
+        jPanel1.add(registerAddressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 285, 150, -1));
+        jPanel1.add(registerPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 570, 175, 35));
+        jPanel1.add(registerConfirmPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 570, 175, 35));
+
+        registerPasswordLabel.setText("jLabel2");
+        jPanel1.add(registerPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 150, -1));
+
+        registerConfirmPasswordLabel.setText("jLabel3");
+        jPanel1.add(registerConfirmPasswordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 550, 150, -1));
+
+        registerAddressField.setColumns(20);
+        registerAddressField.setLineWrap(true);
+        registerAddressField.setRows(5);
+        registerAddressField.setWrapStyleWord(true);
+        jScrollPane3.setViewportView(registerAddressField);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 385, 355, -1));
+
+        registerUsernameLabel.setText("jLabel4");
+        jPanel1.add(registerUsernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 150, -1));
+        jPanel1.add(registerEmailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 630, 175, 35));
+        jPanel1.add(registerPhoneNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 630, 175, 35));
+
+        registerEmailLabel.setText("jLabel5");
+        jPanel1.add(registerEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, 150, -1));
+
+        registerPhoneNumberLabel.setText("jLabel6");
+        jPanel1.add(registerPhoneNumberLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 610, 150, -1));
+
+        registerButton.setText("jButton1");
+        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 710, 355, 35));
+        jPanel1.add(registerProvinceBirthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 185, 180, 35));
+        jPanel1.add(registerRegencyBirthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 185, 170, 35));
+        jPanel1.add(registerAddressProvinceField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 305, 355, 35));
+        jPanel1.add(registerAddressRegencyField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 345, 175, 35));
+        jPanel1.add(registerAddressDistrictField, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 345, 175, 35));
+
+        jScrollPane2.setViewportView(jPanel1);
+
+        javax.swing.GroupLayout registerPanelLayout = new javax.swing.GroupLayout(registerPanel);
+        registerPanel.setLayout(registerPanelLayout);
+        registerPanelLayout.setHorizontalGroup(
+            registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+        registerPanelLayout.setVerticalGroup(
+            registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jScrollPane3.setViewportView(jPanel3);
-
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 610));
-
-        jTabbedPane1.addTab("tab3", jPanel2);
+        jTabbedPane1.addTab("tab3", registerPanel);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 392, 650));
 
@@ -269,43 +302,55 @@ public class TeacherLoginView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void provinceFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_provinceFieldItemStateChanged
-        
-        try {
-            RegionService service = new RegionService();
-            
-            regencyField.setItems(service.getRegencies(provinceField.getSelectedRegion().getId()));
-            districtField.setItems(service.getDistricts(regencyField.getSelectedRegion().getId()));
-        } catch (IOException ex) {
-            Logger.getLogger(TeacherLoginView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_provinceFieldItemStateChanged
-
-    private void regencyFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_regencyFieldItemStateChanged
-        
-        if (regencyField.getSelectedRegion() == null){
-            return;
-        }
-        
-        try {
-            RegionService service = new RegionService();
-            
-            districtField.setItems(service.getDistricts(regencyField.getSelectedRegion().getId()));
-        } catch (IOException ex) {
-            Logger.getLogger(TeacherLoginView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                
-    }//GEN-LAST:event_regencyFieldItemStateChanged
-
     private void signInShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInShowPasswordActionPerformed
-        
+
         if(signInShowPassword.isSelected()){
             signInpasswordField.setEchoChar((char) 0);
         } else {
             signInpasswordField.setEchoChar(AppManager.getDefaultPasswordChar());
         }
-        
+
     }//GEN-LAST:event_signInShowPasswordActionPerformed
+
+    private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
+        
+        /*  
+        String username = signInusernameField.getText();
+        String password = new String(signInpasswordField.getPassword());
+          
+        LoginRequest request = new LoginRequest(username, password);
+          
+        try {
+            String response = new AuthService().loginStaff(request);
+            
+            StaffResponse staff = new AuthService().getCurrentStaff();
+              
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.PLAIN_MESSAGE);
+            */
+            try {
+                // StaffResponse staff = new StaffResponse();
+                //StaffDashboardView view = new StaffDashboardView(staff);
+                TeacherDashboardView view = new TeacherDashboardView();
+                view.setVisible(true);
+            
+                this.dispose();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            /*
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        */
+        
+    }//GEN-LAST:event_signInButtonActionPerformed
+
+    private void registerNameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registerNameFieldKeyReleased
+        
+        registerUsernameField.setText(registerNameField.getText().replace(" ", "").replace("-", "").toLowerCase());
+        
+    }//GEN-LAST:event_registerNameFieldKeyReleased
 
     private void setupRegionComboBox() throws IOException{
 
@@ -364,52 +409,20 @@ public class TeacherLoginView extends javax.swing.JFrame {
 
     }// GEN-LAST:event_jComboBox1ItemStateChanged
 
-    private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_signInButtonActionPerformed
-        /*  
-        String username = signInusernameField.getText();
-        String password = new String(signInpasswordField.getPassword());
-          
-        LoginRequest request = new LoginRequest(username, password);
-          
-        try {
-            String response = new AuthService().loginStaff(request);
-            
-            StaffResponse staff = new AuthService().getCurrentStaff();
-              
-            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.PLAIN_MESSAGE);
-            */
-            try {
-                // StaffResponse staff = new StaffResponse();
-                //StaffDashboardView view = new StaffDashboardView(staff);
-                TeacherDashboardView view = new TeacherDashboardView();
-                view.setVisible(true);
-            
-                this.dispose();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            /*
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
-        }
-        */
-    }// GEN-LAST:event_signInButtonActionPerformed
-
     private void clearFormRegistration(){
-        registerNameField.setText("");
-        registerGenderField.setSelectedIndex(0);
-        registerUsernameField.setText("");
-        registerPasswordField.setText("");
-        registerRePasswordField.setText("");
-        registerDateField.setSelectedIndex(0);
-        registerMonthField.setSelectedIndex(0);
-        registerYearField.setSelectedItem("");
-        registerEmail.setText("");
-        registerPhoneNumber.setText("");
-        provinceField.setSelectedIndex(0);
-        regencyField.setSelectedIndex(0);
-        districtField.setSelectedIndex(0);
+//        registerNameField.setText("");
+//        registerGenderField.setSelectedIndex(0);
+//        registerUsernameField.setText("");
+//        registerPasswordField.setText("");
+//        registerRePasswordField.setText("");
+//        registerDateField.setSelectedIndex(0);
+//        registerMonthField.setSelectedIndex(0);
+//        registerYearField.setSelectedItem("");
+//        registerEmail.setText("");
+//        registerPhoneNumber.setText("");
+//        provinceField.setSelectedIndex(0);
+//        regencyField.setSelectedIndex(0);
+//        districtField.setSelectedIndex(0);
     }
     
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_registerButtonActionPerformed
@@ -491,47 +504,27 @@ public class TeacherLoginView extends javax.swing.JFrame {
         jTabbedPane1.setTitleAt(1, setInternationalization("register"));
 
         signInLabel.setText(setInternationalization("sign.in"));
-
         signInUsernameLabel.setText(setInternationalization("username"));
         signInPasswordLabel.setText(setInternationalization("password"));
         signInShowPassword.setText(setInternationalization("show.password"));
-//        signInusernameField.putClientProperty("JTextField.placeholderText", setInternationalization("input.username"));
-//        signInpasswordField.putClientProperty("JTextField.placeholderText", setInternationalization("input.password"));
-
         signInButton.setText(setInternationalization("sign.in"));
 
         registerLabel.setText(setInternationalization("register"));
         registerButton.setText(setInternationalization("register"));
 
-        registerNameField.putClientProperty("JTextField.placeholderText", setInternationalization("input.name"));
+        registerNameLabel.setText(setInternationalization("full.name"));
+        registerGenderLabel.setText(setInternationalization("gender"));
         String[] genders = new String[] { setInternationalization("male"), setInternationalization("female") };
         registerGenderField.setModel(new DefaultComboBoxModel<>(genders));
-        registerUsernameField.putClientProperty("JTextField.placeholderText",
-                setInternationalization("input.username"));
-        registerPasswordField.putClientProperty("JTextField.placeholderText",
-                setInternationalization("input.password"));
-        registerRePasswordField.putClientProperty("JTextField.placeholderText",
-                setInternationalization("input.confirm.password"));
-        registerEmail.putClientProperty("JTextField.placeholderText", setInternationalization("input.email"));
-        registerPhoneNumber.putClientProperty("JTextField.placeholderText",
-                setInternationalization("input.phone.number"));
+        registerBirthplaceLabel.setText(setInternationalization("birthplace"));
+        registerBirthdateLabel.setText(setInternationalization("birthdate"));
+        registerAddressLabel.setText(setInternationalization("address"));
+        registerUsernameLabel.setText(setInternationalization("username"));
+        registerPasswordLabel.setText(setInternationalization("password"));
+        registerConfirmPasswordLabel.setText(setInternationalization("confirm.password"));
+        registerEmailLabel.setText(setInternationalization("email"));
+        registerPhoneNumberLabel.setText(setInternationalization("phone.number"));
         registerMonthField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getMonthList()));
-        
-        registerAddress.putClientProperty("JTextArea.placeholderText", "Enter your address");
-
-        // lalu extend UI delegate custom
-        registerAddress.setUI(new FlatTextAreaUI() {
-            @Override
-            protected void paintSafely(java.awt.Graphics g) {
-                super.paintSafely(g);
-                if (registerAddress.getText().isEmpty() && !registerAddress.hasFocus()) {
-                    g.setColor(java.awt.Color.GRAY);
-                    g.drawString((String) registerAddress.getClientProperty("JTextArea.placeholderText"),
-                                 getInsets().left, g.getFontMetrics().getAscent() + getInsets().top);
-                }
-            }
-        });
-
         
         boolean lightMode = AppManager.getLightMode();
 
@@ -578,31 +571,43 @@ public class TeacherLoginView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private com.unindra.school.app.components.RegionComboBox districtField;
+    private javax.swing.JLabel corner;
     private javax.swing.JLabel image;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToggleButton jToggleButton1;
-    private com.unindra.school.app.components.RegionComboBox provinceField;
-    private com.unindra.school.app.components.RegionComboBox regencyField;
-    private javax.swing.JTextArea registerAddress;
+    private com.unindra.school.app.components.RegionComboBox registerAddressDistrictField;
+    private javax.swing.JTextArea registerAddressField;
+    private javax.swing.JLabel registerAddressLabel;
+    private com.unindra.school.app.components.RegionComboBox registerAddressProvinceField;
+    private com.unindra.school.app.components.RegionComboBox registerAddressRegencyField;
+    private javax.swing.JLabel registerBirthdateLabel;
+    private javax.swing.JLabel registerBirthplaceLabel;
     private javax.swing.JButton registerButton;
+    private javax.swing.JPasswordField registerConfirmPasswordField;
+    private javax.swing.JLabel registerConfirmPasswordLabel;
     private javax.swing.JComboBox<String> registerDateField;
-    private javax.swing.JTextField registerEmail;
+    private javax.swing.JTextField registerEmailField;
+    private javax.swing.JLabel registerEmailLabel;
     private javax.swing.JComboBox<String> registerGenderField;
+    private javax.swing.JLabel registerGenderLabel;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JComboBox<String> registerMonthField;
     private javax.swing.JTextField registerNameField;
+    private javax.swing.JLabel registerNameLabel;
     private javax.swing.JPanel registerPanel;
     private javax.swing.JPasswordField registerPasswordField;
-    private javax.swing.JTextField registerPhoneNumber;
-    private javax.swing.JPasswordField registerRePasswordField;
+    private javax.swing.JLabel registerPasswordLabel;
+    private javax.swing.JTextField registerPhoneNumberField;
+    private javax.swing.JLabel registerPhoneNumberLabel;
+    private com.unindra.school.app.components.RegionComboBox registerProvinceBirthplace;
+    private com.unindra.school.app.components.RegionComboBox registerRegencyBirthplace;
     private javax.swing.JTextField registerUsernameField;
+    private javax.swing.JLabel registerUsernameLabel;
     private javax.swing.JComboBox<String> registerYearField;
     private javax.swing.JToggleButton setting;
     private javax.swing.JButton signInButton;
@@ -613,6 +618,5 @@ public class TeacherLoginView extends javax.swing.JFrame {
     private javax.swing.JLabel signInUsernameLabel;
     private javax.swing.JPasswordField signInpasswordField;
     private javax.swing.JTextField signInusernameField;
-    private com.unindra.school.app.components.RegionComboBox villageField;
     // End of variables declaration//GEN-END:variables
 }

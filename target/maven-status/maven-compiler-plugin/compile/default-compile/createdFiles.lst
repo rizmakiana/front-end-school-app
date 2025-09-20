@@ -12,7 +12,6 @@ com/unindra/school/app/model/LoginRequest.class
 com/unindra/school/app/view/teacher/TeacherDashboardView$3.class
 com/unindra/school/app/service/AuthService$1.class
 com/unindra/school/app/view/staff/StaffDashboardView$23.class
-com/unindra/school/app/view/staff/StaffDashboardView$31.class
 com/unindra/school/app/view/staff/StaffLoginView$8.class
 com/unindra/school/app/view/staff/StaffDashboardView$11.class
 com/unindra/school/app/view/staff/StaffDashboardView$8.class

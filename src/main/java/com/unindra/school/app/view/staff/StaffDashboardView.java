@@ -30,6 +30,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -114,7 +115,20 @@ public class StaffDashboardView extends javax.swing.JFrame {
         coursePanelDepartmentList = new javax.swing.JComboBox<>();
         coursePanelPrint = new javax.swing.JButton();
         coursePanelAdd = new javax.swing.JToggleButton();
-        jPanel5 = new javax.swing.JPanel();
+        paymentPanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        unpaidTable = new javax.swing.JTable();
+        studentPayer = new javax.swing.JLabel();
+        paymentList = new javax.swing.JComboBox<>();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        payingTable = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        payButton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         registerStudent = new javax.swing.JInternalFrame();
         registerStudentTitleLabel = new javax.swing.JLabel();
@@ -608,18 +622,95 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab4", coursePanel);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1240, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
-        );
+        paymentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.addTab("tab5", jPanel5);
+        jLabel6.setFont(new java.awt.Font("Adwaita Sans", 0, 32)); // NOI18N
+        paymentPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 300, 40));
+
+        jLabel2.setFont(new java.awt.Font("Adwaita Sans", 0, 20)); // NOI18N
+        paymentPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 25));
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+        paymentPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 300, 30));
+
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
+        jScrollPane9.setViewportView(jList1);
+
+        paymentPanel.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 15, 300, 30));
+
+        unpaidTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"", null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Bulan", "Biaya"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        unpaidTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                unpaidTableMouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(unpaidTable);
+
+        paymentPanel.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 125, 595, 420));
+
+        studentPayer.setText("jLabel7");
+        paymentPanel.add(studentPayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 250, 30));
+
+        paymentList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SPP", "Seragam", "Buku", "Infaq", " " }));
+        paymentPanel.add(paymentList, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 90, 160, 30));
+
+        payingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Pembayaran", "Jumlah"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        payingTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                payingTableMouseClicked(evt);
+            }
+        });
+        jScrollPane11.setViewportView(payingTable);
+
+        paymentPanel.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 85, 595, 420));
+
+        jLabel8.setText("jLabel8");
+        paymentPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 515, 250, 30));
+
+        payButton.setText("jButton1");
+        paymentPanel.add(payButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 515, 120, 30));
+
+        jTabbedPane1.addTab("tab5", paymentPanel);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1489,6 +1580,112 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_courseTableMouseClicked
 
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        
+        boolean isPanelActive = !jTextField1.getText().isBlank();
+        String[] names = {
+            "Ahmad", "Budi", "Citra", "Dewi", "Eko",
+            "Fahmi", "Gita", "Hadi", "Indah", "Joko",
+            "Kartika", "Lina", "Maman", "Nina", "Oscar",
+            "Putra", "Qori", "Rina", "Santi", "Tono",
+            "Ujang", "Vina", "Wati", "Xavier", "Yanto",
+            "Zahra", "Aditya", "Bella", "Cahya", "Dodi"
+        };          
+        // cari hasil
+        String[] results = search(names, jTextField1.getText());
+
+        // update model list
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (String r : results) {
+            listModel.addElement(r);
+        }
+        jList1.setModel(listModel);
+
+        // hanya tampil kalau ada keyword dan hasilnya tidak kosong
+        jScrollPane9.setVisible(isPanelActive && results.length > 0);
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        String name = jList1.getSelectedValue();
+        
+        studentPayer.setText(name);
+        String[][] payment = new String[][]{
+            {"Juni 2024", "100000"},
+            {"Juli 2024", "100000"},
+            {"Agustus 2024", "100000"},
+            {"September 2024", "100000"},
+            {"Oktober 2024", "100000"},
+            {"November 2024", "100000"},
+            {"Desember 2024", "100000"},
+            {"Januari 2025", "100000"},
+            {"Februari 2025", "100000"},
+            {"Maret 20225", "100000"},
+            {"April 2025", "100000"},
+            {"Mei 2025", "100000"},
+        };
+        DefaultTableModel model = (DefaultTableModel) unpaidTable.getModel();
+        model.setRowCount(0);
+        for(String[] value : payment){
+            model.addRow(new Object[]{
+                value[0],
+                value[1]
+            });
+        }
+        
+        jTextField1.setText("");
+        jScrollPane9.setVisible(false);
+        DefaultTableModel model2 = (DefaultTableModel) payingTable.getModel();
+        model2.setRowCount(0);
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void unpaidTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unpaidTableMouseClicked
+        
+        int row = unpaidTable.getSelectedRow();
+        if (row < 0) return; // kalau ga ada row terpilih
+
+        // ambil data dari row
+        Object col0 = unpaidTable.getValueAt(row, 0);
+        Object col1 = unpaidTable.getValueAt(row, 1);
+
+        // hapus dari table1
+        DefaultTableModel model1 = (DefaultTableModel) unpaidTable.getModel();
+        model1.removeRow(row);
+
+        // tambahkan ke table2
+        DefaultTableModel model2 = (DefaultTableModel) payingTable.getModel();
+        model2.addRow(new Object[]{ col0, col1 });
+
+        amount += Double.parseDouble(col1.toString());
+        jLabel8.setText("Total : " + amount);
+    }//GEN-LAST:event_unpaidTableMouseClicked
+
+    private void payingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payingTableMouseClicked
+        
+        int row = payingTable.getSelectedRow();
+        if (row < 0) return; // kalau ga ada row terpilih
+
+        // ambil data dari row
+        Object col0 = payingTable.getValueAt(row, 0);
+        Object col1 = payingTable.getValueAt(row, 1);
+
+        amount -= Double.parseDouble(col1.toString());
+        jLabel8.setText("Total : " + amount);
+        // hapus dari table1
+        DefaultTableModel model1 = (DefaultTableModel) payingTable.getModel();
+        model1.removeRow(row);
+
+        // tambahkan ke table2
+        DefaultTableModel model2 = (DefaultTableModel) unpaidTable.getModel();
+        model2.addRow(new Object[]{ col0, col1 });   
+
+    }//GEN-LAST:event_payingTableMouseClicked
+
+    private String[] search(String[] names, String key) {
+        return Arrays.stream(names)
+            .filter(x -> x.toLowerCase().contains(key.toLowerCase()))
+            .toArray(String[]::new);
+    }
+    
     private JInternalFrame[] getInternalFrames(){
         return new JInternalFrame[]{
             registerStudent,
@@ -1794,6 +1991,25 @@ public class StaffDashboardView extends javax.swing.JFrame {
         //detailCourse
     }
     
+    private void setUpPaymentPanel(){
+        jLabel6.setText("Payment Menu");
+        jLabel2.setText("All Students Bill");
+        
+        payButton.setText(setInternationalization("pay"));
+    }
+    
+    private void setUpTablePayment(){
+        String[] header = new String[]{
+            "Unpaid Bill",
+            "Amount"
+        };
+        
+        TableColumnModel model = unpaidTable.getColumnModel();
+        for(int i = 0; i < header.length; i++){
+            model.getColumn(i).setHeaderValue(header[i]);
+        }
+    }
+    
     public String setInternationalization(String key) {
 
         ResourceBundle bundle = ResourceBundle.getBundle("message", AppManager.getLocale());
@@ -1879,6 +2095,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
         setUpCourseTable();
         setUpInternalFrameCourse();
+        
+        setUpPaymentPanel();
+        setUpTablePayment();
     }
     
     private void generateComponents() throws IOException{
@@ -1925,6 +2144,8 @@ public class StaffDashboardView extends javax.swing.JFrame {
         for(JInternalFrame frame : getInternalFrames()){
             frame.setVisible(false);
         }
+        
+        jScrollPane9.setVisible(false);
         
        
    }
@@ -2082,12 +2303,17 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2095,9 +2321,15 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JLabel myProfile;
+    private javax.swing.JButton payButton;
+    private javax.swing.JTable payingTable;
+    private javax.swing.JComboBox<String> paymentList;
+    private javax.swing.JPanel paymentPanel;
     private javax.swing.JInternalFrame registerStudent;
     private javax.swing.JLabel registerStudentBirthdateLabel;
     private javax.swing.JComboBox<String> registerStudentDateField;
@@ -2175,6 +2407,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JTextField studentPanelSearch;
     private javax.swing.JComboBox<String> studentPanelSectionList;
     private javax.swing.JLabel studentPanelTitle;
+    private javax.swing.JLabel studentPayer;
     private javax.swing.JTable studentTable;
     private javax.swing.JPanel teacherPanel;
     private javax.swing.JToggleButton teacherPanelAddTeacher;
@@ -2183,6 +2416,11 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JTextField teacherPanelSearch;
     private javax.swing.JLabel teacherPanelTitle;
     private javax.swing.JTable teacherTable;
+    private javax.swing.JTable unpaidTable;
     private javax.swing.JDesktopPane wrapper;
     // End of variables declaration//GEN-END:variables
+
+    private String id;
+    
+    private Double amount = 0d;
 }

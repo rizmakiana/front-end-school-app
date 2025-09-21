@@ -668,9 +668,16 @@ public class StaffDashboardView extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         unpaidTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -679,6 +686,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
             }
         });
         jScrollPane10.setViewportView(unpaidTable);
+        if (unpaidTable.getColumnModel().getColumnCount() > 0) {
+            unpaidTable.getColumnModel().getColumn(0).setResizable(false);
+            unpaidTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         paymentPanel.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 125, 595, 420));
 
@@ -699,9 +710,16 @@ public class StaffDashboardView extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         payingTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -710,6 +728,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
             }
         });
         jScrollPane11.setViewportView(payingTable);
+        if (payingTable.getColumnModel().getColumnCount() > 0) {
+            payingTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         paymentPanel.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 85, 595, 420));
 

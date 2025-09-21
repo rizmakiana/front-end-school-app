@@ -13,6 +13,7 @@ com/unindra/school/app/model/LoginRequest.class
 com/unindra/school/app/view/teacher/TeacherDashboardView$3.class
 com/unindra/school/app/service/AuthService$1.class
 com/unindra/school/app/view/staff/StaffDashboardView$23.class
+com/unindra/school/app/view/staff/StaffDashboardView$31.class
 com/unindra/school/app/view/staff/StaffDashboardView$11.class
 com/unindra/school/app/view/staff/StaffDashboardView$8.class
 com/unindra/school/app/view/staff/StaffLoginView$2.class
@@ -36,6 +37,7 @@ com/unindra/school/app/view/teacher/TeacherLoginView$3.class
 com/unindra/school/app/view/teacher/TeacherDashboardView$8.class
 com/unindra/school/app/view/staff/StaffDashboardView$24.class
 com/unindra/school/app/view/SelectRoleView$1.class
+com/unindra/school/app/view/staff/StaffDashboardView$32.class
 com/unindra/school/app/view/teacher/TeacherDashboardView$2.class
 com/unindra/school/app/model/RegisterStaffRequest.class
 com/unindra/school/app/view/staff/StaffDashboardView$22.class

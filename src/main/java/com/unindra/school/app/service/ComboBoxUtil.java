@@ -7,6 +7,7 @@ package com.unindra.school.app.service;
 import com.unindra.school.app.util.AppManager;
 import java.time.Month;
 import java.time.Year;
+import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -43,4 +44,15 @@ public class ComboBoxUtil {
                 .mapToObj(String::valueOf)
                 .toArray(String[]::new);
     }
+    
+    public static String[] getYearOfTwoSemester(){
+        
+        int thisMonth = YearMonth.now().getMonthValue();
+        int thisYear = (thisMonth > 6) ? Year.now().getValue() + 1: Year.now().getValue();
+        
+        return IntStream.iterate(thisYear, y -> y >= thisYear - 1, y -> y - 1 )
+                .mapToObj(String::valueOf)
+                .toArray(String[]::new);
+    }
+    
 }

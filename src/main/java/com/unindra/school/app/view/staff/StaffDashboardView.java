@@ -19,8 +19,10 @@ import java.awt.Image;
 import java.io.IOException;
 import java.rmi.registry.Registry;
 import java.text.MessageFormat;
+import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
+import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -129,7 +131,14 @@ public class StaffDashboardView extends javax.swing.JFrame {
         payingTable = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         payButton = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        transactionPanel = new javax.swing.JPanel();
+        transactionPanelTitle = new javax.swing.JLabel();
+        transactionPanelDesc = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        transactionTable = new javax.swing.JTable();
+        transactionPanelYearList = new javax.swing.JComboBox<>();
+        transactionPanelMonthList = new javax.swing.JComboBox<>();
+        transactionPanelDateList = new javax.swing.JComboBox<>();
         registerStudent = new javax.swing.JInternalFrame();
         registerStudentTitleLabel = new javax.swing.JLabel();
         registerStudentFullnameLabel = new javax.swing.JLabel();
@@ -712,18 +721,54 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab5", paymentPanel);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1240, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
-        );
+        transactionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.addTab("tab6", jPanel6);
+        transactionPanelTitle.setFont(new java.awt.Font("sansserif", 0, 32)); // NOI18N
+        transactionPanel.add(transactionPanelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 300, 40));
+
+        transactionPanelDesc.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        transactionPanel.add(transactionPanelDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 470, 25));
+
+        transactionTable.setAutoCreateRowSorter(true);
+        transactionTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "No Transaksi", "Nama Siswa", "Waktu Pembayaran", "Total Pembayar"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        transactionTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transactionTableMouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(transactionTable);
+        if (transactionTable.getColumnModel().getColumnCount() > 0) {
+            transactionTable.getColumnModel().getColumn(0).setResizable(false);
+            transactionTable.getColumnModel().getColumn(1).setResizable(false);
+            transactionTable.getColumnModel().getColumn(2).setResizable(false);
+            transactionTable.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        transactionPanel.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 85, 1200, 470));
+
+        transactionPanel.add(transactionPanelYearList, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 50, -1, -1));
+        transactionPanel.add(transactionPanelMonthList, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 50, 135, -1));
+        transactionPanel.add(transactionPanelDateList, new org.netbeans.lib.awtextra.AbsoluteConstraints(915, 50, 80, -1));
+
+        jTabbedPane1.addTab("tab6", transactionPanel);
 
         wrapper.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1240, 630));
 
@@ -1680,6 +1725,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_payingTableMouseClicked
 
+    private void transactionTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transactionTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transactionTableMouseClicked
+
     private String[] search(String[] names, String key) {
         return Arrays.stream(names)
             .filter(x -> x.toLowerCase().contains(key.toLowerCase()))
@@ -2010,6 +2059,33 @@ public class StaffDashboardView extends javax.swing.JFrame {
         }
     }
     
+    private void setUpTransacationPanel(){
+        transactionPanelTitle.setText(setInternationalization("transaction.data"));
+        transactionPanelDesc.setText(setInternationalization("transaction.history"));
+        
+        transactionPanelDateList.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getDateList()));
+        transactionPanelMonthList.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getMonthList()));
+        transactionPanelYearList.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getYearOfTwoSemester()));
+        
+        transactionPanelDateList.setSelectedItem(String.valueOf(LocalDate.now().getDayOfMonth()));
+        transactionPanelMonthList.setSelectedIndex(YearMonth.now().getMonthValue() - 1);
+        transactionPanelYearList.setSelectedItem(String.valueOf(Year.now().getValue()));
+    }
+    
+    private void setUpTableTransaction(){
+        String[] headers = new String[]{
+            setInternationalization("transaction.number"),
+            setInternationalization("name"),
+            setInternationalization("payment.time"),
+            setInternationalization("total.payment")
+        };
+        
+        TableColumnModel model = transactionTable.getColumnModel();
+        for(int i = 0; i < headers.length; i++){
+            model.getColumn(i).setHeaderValue(headers[i]);
+        }
+    }
+    
     public String setInternationalization(String key) {
 
         ResourceBundle bundle = ResourceBundle.getBundle("message", AppManager.getLocale());
@@ -2098,6 +2174,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
         setUpPaymentPanel();
         setUpTablePayment();
+        
+        setUpTransacationPanel();
+        setUpTableTransaction();
     }
     
     private void generateComponents() throws IOException{
@@ -2310,10 +2389,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2416,6 +2495,13 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JTextField teacherPanelSearch;
     private javax.swing.JLabel teacherPanelTitle;
     private javax.swing.JTable teacherTable;
+    private javax.swing.JPanel transactionPanel;
+    private javax.swing.JComboBox<String> transactionPanelDateList;
+    private javax.swing.JLabel transactionPanelDesc;
+    private javax.swing.JComboBox<String> transactionPanelMonthList;
+    private javax.swing.JLabel transactionPanelTitle;
+    private javax.swing.JComboBox<String> transactionPanelYearList;
+    private javax.swing.JTable transactionTable;
     private javax.swing.JTable unpaidTable;
     private javax.swing.JDesktopPane wrapper;
     // End of variables declaration//GEN-END:variables

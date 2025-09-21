@@ -73,6 +73,7 @@ com/unindra/school/app/view/SelectRoleView$5.class
 com/unindra/school/app/view/staff/StaffDashboardView$2.class
 com/unindra/school/app/view/staff/StaffDashboardView$28.class
 com/unindra/school/app/view/staff/StaffLoginView$1.class
+com/unindra/school/app/view/staff/StaffDashboardView$33.class
 com/unindra/school/app/view/teacher/TeacherLoginView.class
 com/unindra/school/app/view/staff/StaffDashboardView$15.class
 com/unindra/school/app/service/StaffService.class

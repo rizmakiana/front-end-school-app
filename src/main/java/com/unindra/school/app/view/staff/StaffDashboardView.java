@@ -85,7 +85,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         studentPanelClassroomList = new javax.swing.JComboBox<>();
         studentPanelDepartmentList = new javax.swing.JComboBox<>();
         studentPanelPrint = new javax.swing.JButton();
-        studentPanelAddStudent = new javax.swing.JToggleButton();
+        studentPanelAddStudent = new javax.swing.JButton();
         teacherPanel = new javax.swing.JPanel();
         teacherPanelTitle = new javax.swing.JLabel();
         teacherPanelDesc = new javax.swing.JLabel();
@@ -93,20 +93,20 @@ public class StaffDashboardView extends javax.swing.JFrame {
         teacherTable = new javax.swing.JTable();
         teacherPanelSearch = new javax.swing.JTextField();
         teacherPanelPrint = new javax.swing.JButton();
-        teacherPanelAddTeacher = new javax.swing.JToggleButton();
+        teacherPanelAddTeacher = new javax.swing.JButton();
         classroomPanel = new javax.swing.JPanel();
         classroomPanelTitle = new javax.swing.JLabel();
         classroomPanelDesc = new javax.swing.JLabel();
         classroomPanelPrint = new javax.swing.JButton();
-        classroomPanelAddSection = new javax.swing.JToggleButton();
-        classroomPanelAddClassroom = new javax.swing.JToggleButton();
-        classroomPanelAddDepartment = new javax.swing.JToggleButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         departmentTable = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
         classroomTable = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
         sectionTable = new javax.swing.JTable();
+        classroomPanelAddDepartment = new javax.swing.JButton();
+        classroomPanelAddClassroom = new javax.swing.JButton();
+        classroomPanelAddSection = new javax.swing.JButton();
         coursePanel = new javax.swing.JPanel();
         coursePanelTitle = new javax.swing.JLabel();
         coursePanelDesc = new javax.swing.JLabel();
@@ -116,7 +116,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         coursePanelClassroomList = new javax.swing.JComboBox<>();
         coursePanelDepartmentList = new javax.swing.JComboBox<>();
         coursePanelPrint = new javax.swing.JButton();
-        coursePanelAdd = new javax.swing.JToggleButton();
+        coursePanelAdd = new javax.swing.JButton();
         paymentDashboard = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         paymentPanel = new javax.swing.JPanel();
@@ -525,30 +525,6 @@ public class StaffDashboardView extends javax.swing.JFrame {
         classroomPanel.add(classroomPanelDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 25));
         classroomPanel.add(classroomPanelPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 50, 30, 30));
 
-        classroomPanelAddSection.setText("jToggleButton5");
-        classroomPanelAddSection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classroomPanelAddSectionActionPerformed(evt);
-            }
-        });
-        classroomPanel.add(classroomPanelAddSection, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 50, 165, 30));
-
-        classroomPanelAddClassroom.setText("jToggleButton6");
-        classroomPanelAddClassroom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classroomPanelAddClassroomActionPerformed(evt);
-            }
-        });
-        classroomPanel.add(classroomPanelAddClassroom, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, 165, 30));
-
-        classroomPanelAddDepartment.setText("jToggleButton7");
-        classroomPanelAddDepartment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classroomPanelAddDepartmentActionPerformed(evt);
-            }
-        });
-        classroomPanel.add(classroomPanelAddDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 165, 30));
-
         departmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -608,6 +584,27 @@ public class StaffDashboardView extends javax.swing.JFrame {
         jScrollPane7.setViewportView(sectionTable);
 
         classroomPanel.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 1200, 260));
+
+        classroomPanelAddDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classroomPanelAddDepartmentActionPerformed(evt);
+            }
+        });
+        classroomPanel.add(classroomPanelAddDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 165, 30));
+
+        classroomPanelAddClassroom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classroomPanelAddClassroomActionPerformed(evt);
+            }
+        });
+        classroomPanel.add(classroomPanelAddClassroom, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, 165, 30));
+
+        classroomPanelAddSection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classroomPanelAddSectionActionPerformed(evt);
+            }
+        });
+        classroomPanel.add(classroomPanelAddSection, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 50, 165, 30));
 
         jTabbedPane1.addTab("tab3", classroomPanel);
 
@@ -916,7 +913,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab6", transactionPanel);
 
-        wrapper.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1240, 630));
+        wrapper.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1240, 630));
 
         registerStudent.setClosable(true);
         registerStudent.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1692,13 +1689,6 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_settingPanelPasswordFieldKeyReleased
 
-    private void studentPanelAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentPanelAddStudentActionPerformed
-        
-        boolean isPanelActive = studentPanelAddStudent.isSelected();
-        registerStudent.setVisible(isPanelActive);
-        
-    }//GEN-LAST:event_studentPanelAddStudentActionPerformed
-
     private void registerStudentFullnameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registerStudentFullnameFieldKeyReleased
         
         registerStudentUsernameField.setText(registerStudentFullnameField.getText().replace(" ", "").replace("-", "").toLowerCase());
@@ -1717,75 +1707,13 @@ public class StaffDashboardView extends javax.swing.JFrame {
             value.setVisible(false);
         }
         
-        for(JToggleButton value : getToggleButtons()){
-            value.setSelected(false);
-        }
-        
     }//GEN-LAST:event_jTabbedPane1MouseClicked
-
-    private void classroomPanelAddDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddDepartmentActionPerformed
-        
-        boolean isPanelActive = classroomPanelAddDepartment.isSelected();
-        addDepartment.setVisible(isPanelActive);
-        
-        if (isPanelActive) {
-            classroomPanelAddClassroom.setSelected(!isPanelActive);
-            classroomPanelAddSection.setSelected(!isPanelActive);
-            
-            addClassroom.setVisible(!isPanelActive);
-            addSection.setVisible(!isPanelActive);
-        }
-        
-    }//GEN-LAST:event_classroomPanelAddDepartmentActionPerformed
-
-    private void classroomPanelAddClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddClassroomActionPerformed
-        
-        boolean isPanelActive = classroomPanelAddClassroom.isSelected();
-        addClassroom.setVisible(isPanelActive);
-        
-        if (isPanelActive) {
-            classroomPanelAddDepartment.setSelected(!isPanelActive);
-            classroomPanelAddSection.setSelected(!isPanelActive);
-            
-            addDepartment.setVisible(!isPanelActive);
-            addSection.setVisible(!isPanelActive);
-        }
-        
-    }//GEN-LAST:event_classroomPanelAddClassroomActionPerformed
-
-    private void classroomPanelAddSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddSectionActionPerformed
-        
-        boolean isPanelActive = classroomPanelAddSection.isSelected();
-        addSection.setVisible(isPanelActive);
-        
-        if (isPanelActive) {
-            classroomPanelAddDepartment.setSelected(!isPanelActive);
-            classroomPanelAddClassroom.setSelected(!isPanelActive);
-            
-            addDepartment.setVisible(!isPanelActive);
-            addClassroom.setVisible(!isPanelActive);
-        }
-    }//GEN-LAST:event_classroomPanelAddSectionActionPerformed
-
-    private void coursePanelAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursePanelAddActionPerformed
-        
-        boolean isPanelActive = coursePanelAdd.isSelected();
-        addCourse.setVisible(isPanelActive);
-        detailCourse.setVisible(false);
-        
-    }//GEN-LAST:event_coursePanelAddActionPerformed
 
     private void registerTeacherFullnameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registerTeacherFullnameFieldKeyReleased
         
         registerTeacherUsernameField.setText(registerTeacherFullnameField.getText().replace(" ", "").replace("-", "").toLowerCase());
         
     }//GEN-LAST:event_registerTeacherFullnameFieldKeyReleased
-
-    private void teacherPanelAddTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherPanelAddTeacherActionPerformed
-        
-        boolean isPanelActive = teacherPanelAddTeacher.isSelected();
-        registerTeacher.setVisible(isPanelActive);
-    }//GEN-LAST:event_teacherPanelAddTeacherActionPerformed
 
     private void teacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teacherTableMouseClicked
         
@@ -1975,6 +1903,51 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_paymentCategoryTableMouseClicked
 
+    private void studentPanelAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentPanelAddStudentActionPerformed
+        
+        registerStudent.setVisible(true);
+        
+    }//GEN-LAST:event_studentPanelAddStudentActionPerformed
+
+    private void teacherPanelAddTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherPanelAddTeacherActionPerformed
+        
+        registerTeacher.setVisible(true);
+        
+    }//GEN-LAST:event_teacherPanelAddTeacherActionPerformed
+
+    private void classroomPanelAddDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddDepartmentActionPerformed
+       
+        addClassroom.setVisible(false);
+        addSection.setVisible(false);
+        
+        addDepartment.setVisible(true);
+        
+    }//GEN-LAST:event_classroomPanelAddDepartmentActionPerformed
+
+    private void classroomPanelAddClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddClassroomActionPerformed
+        
+       addDepartment.setVisible(false);
+       addSection.setVisible(false);
+        
+        addClassroom.setVisible(true);
+        
+    }//GEN-LAST:event_classroomPanelAddClassroomActionPerformed
+
+    private void classroomPanelAddSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddSectionActionPerformed
+        
+        addDepartment.setVisible(false);
+        addClassroom.setVisible(false);
+        
+        addSection.setVisible(true);
+        
+    }//GEN-LAST:event_classroomPanelAddSectionActionPerformed
+
+    private void coursePanelAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursePanelAddActionPerformed
+        
+        addCourse.setVisible(true);
+        
+    }//GEN-LAST:event_coursePanelAddActionPerformed
+
     private String[] search(String[] names, String key) {
         return Arrays.stream(names)
             .filter(x -> x.toLowerCase().contains(key.toLowerCase()))
@@ -2000,17 +1973,6 @@ public class StaffDashboardView extends javax.swing.JFrame {
             addPaymentDetail,
             detailPaymentDetail
             
-        };
-    }
-    
-    private JToggleButton[] getToggleButtons(){
-        return new JToggleButton[]{
-            studentPanelAddStudent,
-            classroomPanelAddDepartment,
-            classroomPanelAddClassroom,
-            classroomPanelAddSection,
-            coursePanelAdd,
-            teacherPanelAddTeacher
         };
     }
     
@@ -2560,15 +2522,15 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel addSectionTitlePanel;
     private javax.swing.JButton back;
     private javax.swing.JPanel classroomPanel;
-    private javax.swing.JToggleButton classroomPanelAddClassroom;
-    private javax.swing.JToggleButton classroomPanelAddDepartment;
-    private javax.swing.JToggleButton classroomPanelAddSection;
+    private javax.swing.JButton classroomPanelAddClassroom;
+    private javax.swing.JButton classroomPanelAddDepartment;
+    private javax.swing.JButton classroomPanelAddSection;
     private javax.swing.JLabel classroomPanelDesc;
     private javax.swing.JButton classroomPanelPrint;
     private javax.swing.JLabel classroomPanelTitle;
     private javax.swing.JTable classroomTable;
     private javax.swing.JPanel coursePanel;
-    private javax.swing.JToggleButton coursePanelAdd;
+    private javax.swing.JButton coursePanelAdd;
     private javax.swing.JComboBox<String> coursePanelClassroomList;
     private javax.swing.JComboBox<String> coursePanelDepartmentList;
     private javax.swing.JLabel coursePanelDesc;
@@ -2782,7 +2744,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JPasswordField settingPanelnewPassword;
     private javax.swing.JToggleButton settings;
     private javax.swing.JPanel studentPanel;
-    private javax.swing.JToggleButton studentPanelAddStudent;
+    private javax.swing.JButton studentPanelAddStudent;
     private javax.swing.JComboBox<String> studentPanelClassroomList;
     private javax.swing.JComboBox<String> studentPanelDepartmentList;
     private javax.swing.JLabel studentPanelDesc;
@@ -2793,7 +2755,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel studentPayer;
     private javax.swing.JTable studentTable;
     private javax.swing.JPanel teacherPanel;
-    private javax.swing.JToggleButton teacherPanelAddTeacher;
+    private javax.swing.JButton teacherPanelAddTeacher;
     private javax.swing.JLabel teacherPanelDesc;
     private javax.swing.JButton teacherPanelPrint;
     private javax.swing.JTextField teacherPanelSearch;

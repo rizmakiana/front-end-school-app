@@ -1697,6 +1697,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
     private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
         
+        registerStudent.setVisible(false);
         detailStudent.setVisible(true);
         
     }//GEN-LAST:event_studentTableMouseClicked
@@ -1716,41 +1717,45 @@ public class StaffDashboardView extends javax.swing.JFrame {
     }//GEN-LAST:event_registerTeacherFullnameFieldKeyReleased
 
     private void teacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teacherTableMouseClicked
-        
+
+        registerTeacher.setVisible(false);
         detailTeacher.setVisible(true);
         
     }//GEN-LAST:event_teacherTableMouseClicked
 
     private void departmentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentTableMouseClicked
         
-        JInternalFrame[] frames = new JInternalFrame[]{detailDepartment, detailClassroom, detailSection};
-        for(JInternalFrame frame : frames){
-            frame.setVisible(false);
-        }
-        
         detailDepartment.setVisible(true);
+        detailClassroom.setVisible(false);
+        detailSection.setVisible(false);
+        
+        addDepartment.setVisible(false);
+        addClassroom.setVisible(false);
+        addSection.setVisible(false);
         
     }//GEN-LAST:event_departmentTableMouseClicked
 
     private void classroomTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classroomTableMouseClicked
         
-        JInternalFrame[] frames = new JInternalFrame[]{detailDepartment, detailClassroom, detailSection};
-        for(JInternalFrame frame : frames){
-            frame.setVisible(false);
-        }
-        
+        detailDepartment.setVisible(false);
         detailClassroom.setVisible(true);
+        detailSection.setVisible(false);
+        
+        addDepartment.setVisible(false);
+        addClassroom.setVisible(false);
+        addSection.setVisible(false);
         
     }//GEN-LAST:event_classroomTableMouseClicked
 
     private void sectionTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sectionTableMouseClicked
         
-        JInternalFrame[] frames = new JInternalFrame[]{detailDepartment, detailClassroom, detailSection};
-        for(JInternalFrame frame : frames){
-            frame.setVisible(false);
-        }
-        
+        detailDepartment.setVisible(false);
+        detailClassroom.setVisible(false);
         detailSection.setVisible(true);
+        
+        addDepartment.setVisible(false);
+        addClassroom.setVisible(false);
+        addSection.setVisible(false);
         
     }//GEN-LAST:event_sectionTableMouseClicked
 
@@ -1906,44 +1911,56 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private void studentPanelAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentPanelAddStudentActionPerformed
         
         registerStudent.setVisible(true);
+        detailStudent.setVisible(false);
         
     }//GEN-LAST:event_studentPanelAddStudentActionPerformed
 
     private void teacherPanelAddTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherPanelAddTeacherActionPerformed
-        
+
+        detailTeacher.setVisible(false);
         registerTeacher.setVisible(true);
         
     }//GEN-LAST:event_teacherPanelAddTeacherActionPerformed
 
     private void classroomPanelAddDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddDepartmentActionPerformed
-       
-        addClassroom.setVisible(false);
-        addSection.setVisible(false);
+
+        detailDepartment.setVisible(false);
+        detailClassroom.setVisible(false);
+        detailSection.setVisible(false);
         
         addDepartment.setVisible(true);
+        addClassroom.setVisible(false);
+        addSection.setVisible(false);
         
     }//GEN-LAST:event_classroomPanelAddDepartmentActionPerformed
 
     private void classroomPanelAddClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddClassroomActionPerformed
         
-       addDepartment.setVisible(false);
-       addSection.setVisible(false);
+       detailDepartment.setVisible(false);
+        detailClassroom.setVisible(false);
+        detailSection.setVisible(false);
         
+        addDepartment.setVisible(false);
         addClassroom.setVisible(true);
+        addSection.setVisible(false);
         
     }//GEN-LAST:event_classroomPanelAddClassroomActionPerformed
 
     private void classroomPanelAddSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classroomPanelAddSectionActionPerformed
         
+        detailDepartment.setVisible(false);
+        detailClassroom.setVisible(false);
+        detailSection.setVisible(false);
+        
         addDepartment.setVisible(false);
         addClassroom.setVisible(false);
-        
         addSection.setVisible(true);
         
     }//GEN-LAST:event_classroomPanelAddSectionActionPerformed
 
     private void coursePanelAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursePanelAddActionPerformed
-        
+
+        detailCourse.setVisible(false);
         addCourse.setVisible(true);
         
     }//GEN-LAST:event_coursePanelAddActionPerformed

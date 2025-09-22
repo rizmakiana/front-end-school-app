@@ -4,8 +4,10 @@
  */
 package com.unindra.school.app.view.staff;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.icons.FlatSearchIcon;
 import com.unindra.school.app.entity.StaffResponse;
 import com.unindra.school.app.model.Gender;
 import com.unindra.school.app.model.RegionResponse;
@@ -39,6 +41,7 @@ import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JViewport;
 import javax.swing.UIManager;
@@ -2423,6 +2426,18 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
         setUpTransacationPanel();
         setUpTableTransaction();
+        
+        JTextField[] fields = new JTextField[]{
+            studentPanelSearch,
+            teacherPanelSearch,
+            coursePanelSearch,
+            paymentPanelSearchField,
+        };
+        
+        for(JTextField field : fields){
+            field.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, setInternationalization("search"));
+            field.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSearchIcon());
+        };
     }
     
     private void generateComponents() throws IOException{

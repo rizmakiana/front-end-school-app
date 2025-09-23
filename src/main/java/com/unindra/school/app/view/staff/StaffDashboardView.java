@@ -2268,7 +2268,12 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCourseAddButton.setText(setInternationalization("add.course"));
         
         detailCourseTitlePanel.setText(setInternationalization("detail.course"));
-        //detailCourse
+        detailCourseDepartmentLabel.setText(setInternationalization("department.name"));
+        detailCourseClassroomName.setText(setInternationalization("classroom.name"));
+        detailCourseCodeLabel.setText(setInternationalization("course.code"));
+        detailCourseNameLabel.setText(setInternationalization("course.name"));
+        detailCourseDeleteButton.setText(setInternationalization("delete"));
+        detailCourseUpdateButton.setText(setInternationalization("edit"));
     }
     
     private void setUpPaymentPanel(){

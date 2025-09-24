@@ -142,10 +142,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
         paymentManagementDesc = new javax.swing.JLabel();
         jScrollPane17 = new javax.swing.JScrollPane();
         paymentCategoryTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        paymentManagementAddPayment = new javax.swing.JButton();
         jScrollPane18 = new javax.swing.JScrollPane();
         paymentCategoryTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        paymentManagementAddCategory = new javax.swing.JButton();
         transactionPanel = new javax.swing.JPanel();
         transactionPanelTitle = new javax.swing.JLabel();
         transactionPanelDesc = new javax.swing.JLabel();
@@ -842,13 +842,13 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         paymentManagement.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 600, -1));
 
-        jButton1.setText("Tambah Pembayaran");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        paymentManagementAddPayment.setText("Tambah Pembayaran");
+        paymentManagementAddPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                paymentManagementAddPaymentActionPerformed(evt);
             }
         });
-        paymentManagement.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 55, 180, 30));
+        paymentManagement.add(paymentManagementAddPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 55, 180, 30));
 
         paymentCategoryTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -883,13 +883,13 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         paymentManagement.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 600, -1));
 
-        jButton2.setText("Tambah Kategori");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        paymentManagementAddCategory.setText("Tambah Kategori");
+        paymentManagementAddCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                paymentManagementAddCategoryActionPerformed(evt);
             }
         });
-        paymentManagement.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 55, 150, 30));
+        paymentManagement.add(paymentManagementAddCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 55, 150, 30));
 
         jTabbedPane2.addTab("tab2", paymentManagement);
 
@@ -1960,14 +1960,14 @@ public class StaffDashboardView extends javax.swing.JFrame {
         paymentPanelTotalBill.setText(setInternationalization("total.payment.amount", String.valueOf(amount)));
     }//GEN-LAST:event_paymentPanelCancelButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void paymentManagementAddPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentManagementAddPaymentActionPerformed
 
         addCategoryPayment.setVisible(false);
         detailCategory.setVisible(false);
         detailPaymentDetail.setVisible(false);
         addPaymentDetail.setVisible(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_paymentManagementAddPaymentActionPerformed
 
     private void paymentCategoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentCategoryTableMouseClicked
        
@@ -2035,7 +2035,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_coursePanelAddActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void paymentManagementAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentManagementAddCategoryActionPerformed
         
         addPaymentDetail.setVisible(false);
         detailPaymentDetail.setVisible(false);
@@ -2043,7 +2043,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCategoryPayment.setVisible(true);
         addCategoryPayment.toFront();
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_paymentManagementAddCategoryActionPerformed
 
     private void paymentCategoryTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentCategoryTable1MouseClicked
        
@@ -2381,6 +2381,8 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
         paymentManagementTitle.setText(setInternationalization("payment.management"));
         paymentManagementDesc.setText(setInternationalization("payment.management.system"));
+        paymentManagementAddCategory.setText(setInternationalization("add.category"));
+        paymentManagementAddPayment.setText(setInternationalization("add.payment"));
         
         payButton.setText(setInternationalization("pay"));
         
@@ -2805,8 +2807,6 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JTextField detailTeacherUsernameField;
     private javax.swing.JLabel detailTeacherUsernameLabel;
     private javax.swing.JComboBox<String> detailTeacherYearField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
@@ -2839,6 +2839,8 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JPanel paymentDashboard;
     private javax.swing.JComboBox<String> paymentList;
     private javax.swing.JPanel paymentManagement;
+    private javax.swing.JButton paymentManagementAddCategory;
+    private javax.swing.JButton paymentManagementAddPayment;
     private javax.swing.JLabel paymentManagementDesc;
     private javax.swing.JLabel paymentManagementTitle;
     private javax.swing.JPanel paymentPanel;

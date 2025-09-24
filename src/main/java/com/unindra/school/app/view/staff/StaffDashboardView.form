@@ -3957,7 +3957,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JInternalFrame" name="addCategory">
+        <Container class="javax.swing.JInternalFrame" name="addCategoryPayment">
           <Properties>
             <Property name="closable" type="boolean" value="true"/>
             <Property name="defaultCloseOperation" type="int" value="1"/>
@@ -3973,7 +3973,7 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="addCategoryTitle">
+            <Component class="javax.swing.JLabel" name="addCategoryPaymentTitle">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="sansserif" size="16" style="1"/>
@@ -3986,7 +3986,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="addCategoryLabel">
+            <Component class="javax.swing.JLabel" name="addCategoryPaymentLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel6"/>
               </Properties>
@@ -3996,14 +3996,14 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="addCategoryField">
+            <Component class="javax.swing.JTextField" name="addCategoryPaymentField">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="200" y="80" width="230" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="addCategoryButton">
+            <Component class="javax.swing.JButton" name="addCategoryPaymentButton">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="304" y="160" width="120" height="25"/>

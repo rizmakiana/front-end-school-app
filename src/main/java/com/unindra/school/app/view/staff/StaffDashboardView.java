@@ -390,8 +390,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailCategoryTitle = new javax.swing.JLabel();
         detailCategoryLabel = new javax.swing.JLabel();
         detailCategoryField = new javax.swing.JTextField();
-        detailCategoryButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        detailCategoryTotalPaymentLabel = new javax.swing.JLabel();
+        detailCategoryTotalPaymentField = new javax.swing.JTextField();
+        detailCategoryEditButton = new javax.swing.JButton();
+        detailCategoryDeleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1653,10 +1655,16 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailCategoryLabel.setText("jLabel6");
         detailCategory.getContentPane().add(detailCategoryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 30));
         detailCategory.getContentPane().add(detailCategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 230, 30));
-        detailCategory.getContentPane().add(detailCategoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 160, 120, 25));
-        detailCategory.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 120, 25));
 
-        wrapper.add(detailCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 460, 240));
+        detailCategoryTotalPaymentLabel.setText("jLabel6");
+        detailCategory.getContentPane().add(detailCategoryTotalPaymentLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 115, 170, 30));
+
+        detailCategoryTotalPaymentField.setEnabled(false);
+        detailCategory.getContentPane().add(detailCategoryTotalPaymentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 115, 230, 30));
+        detailCategory.getContentPane().add(detailCategoryEditButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 120, 30));
+        detailCategory.getContentPane().add(detailCategoryDeleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 180, 120, 30));
+
+        wrapper.add(detailCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 460, 260));
 
         getContentPane().add(wrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
@@ -2383,6 +2391,12 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addPaymentDetailAmountLabel.setText(setInternationalization("payment.fee"));
         addPaymentDetailAddButton.setText(setInternationalization("add.payment"));
         
+        detailCategoryTitle.setText(setInternationalization("category.detail"));
+        detailCategoryLabel.setText(setInternationalization("category.name"));
+        detailCategoryTotalPaymentLabel.setText(setInternationalization("total.payment"));
+        detailCategoryDeleteButton.setText(setInternationalization("delete"));
+        detailCategoryEditButton.setText(setInternationalization("edit"));
+       
     }
     
     private void setUpTablePayment(){
@@ -2678,10 +2692,13 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JTable courseTable;
     private javax.swing.JTable departmentTable;
     private javax.swing.JInternalFrame detailCategory;
-    private javax.swing.JButton detailCategoryButton;
+    private javax.swing.JButton detailCategoryDeleteButton;
+    private javax.swing.JButton detailCategoryEditButton;
     private javax.swing.JTextField detailCategoryField;
     private javax.swing.JLabel detailCategoryLabel;
     private javax.swing.JLabel detailCategoryTitle;
+    private javax.swing.JTextField detailCategoryTotalPaymentField;
+    private javax.swing.JLabel detailCategoryTotalPaymentLabel;
     private javax.swing.JInternalFrame detailClassroom;
     private javax.swing.JButton detailClassroomDeleteButton;
     private javax.swing.JLabel detailClassroomDepartmentNameLabel;
@@ -2778,7 +2795,6 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> detailTeacherYearField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;

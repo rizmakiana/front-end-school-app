@@ -360,16 +360,16 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailCourseNameLabel = new javax.swing.JLabel();
         detailCourseDeleteButton = new javax.swing.JButton();
         addPaymentDetail = new javax.swing.JInternalFrame();
-        addCourseTitlePanel1 = new javax.swing.JLabel();
-        addCourseDepartmentField1 = new javax.swing.JComboBox<>();
-        addCourseClassroomField1 = new javax.swing.JComboBox<>();
-        addCourseCodeField1 = new javax.swing.JTextField();
-        addCourseNameField1 = new javax.swing.JTextField();
-        addCourseAddButton1 = new javax.swing.JButton();
-        addCourseDepartmentLabel1 = new javax.swing.JLabel();
-        addCourseClassroomName1 = new javax.swing.JLabel();
-        addCourseCodeLabel1 = new javax.swing.JLabel();
-        addCourseNameLabel1 = new javax.swing.JLabel();
+        addPaymentDetailTitlePanel = new javax.swing.JLabel();
+        addPaymentDetailCategoryLabel = new javax.swing.JLabel();
+        addPaymentDetailCategoryField = new javax.swing.JComboBox<>();
+        addPaymentDetailClassroomField = new javax.swing.JComboBox<>();
+        addPaymentDetailClassroomLabel = new javax.swing.JLabel();
+        addPaymentDetailNameField = new javax.swing.JTextField();
+        addPaymentDetailNameLabel = new javax.swing.JLabel();
+        addPaymentDetailAmountField = new javax.swing.JTextField();
+        addPaymentDetailAmountLabel = new javax.swing.JLabel();
+        addPaymentDetailAddButton = new javax.swing.JButton();
         detailPaymentDetail = new javax.swing.JInternalFrame();
         addCourseTitlePanel2 = new javax.swing.JLabel();
         addCourseDepartmentField2 = new javax.swing.JComboBox<>();
@@ -845,7 +845,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        paymentManagement.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 60, 180, -1));
+        paymentManagement.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 55, 180, 30));
 
         paymentCategoryTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -886,7 +886,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        paymentManagement.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 60, 150, -1));
+        paymentManagement.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 55, 150, 30));
 
         jTabbedPane2.addTab("tab2", paymentManagement);
 
@@ -1573,32 +1573,21 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addPaymentDetail.setVisible(true);
         addPaymentDetail.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        addCourseTitlePanel1.setFont(new java.awt.Font("Adwaita Sans", 1, 16)); // NOI18N
-        addCourseTitlePanel1.setText("jLabel2");
-        addPaymentDetail.getContentPane().add(addCourseTitlePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 490, 30));
+        addPaymentDetailTitlePanel.setFont(new java.awt.Font("Adwaita Sans", 1, 16)); // NOI18N
+        addPaymentDetail.getContentPane().add(addPaymentDetailTitlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 490, 30));
+        addPaymentDetail.getContentPane().add(addPaymentDetailCategoryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 30));
 
-        addCourseDepartmentField1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        addPaymentDetail.getContentPane().add(addCourseDepartmentField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 310, 30));
+        addPaymentDetailCategoryField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        addPaymentDetail.getContentPane().add(addPaymentDetailCategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 310, 30));
 
-        addCourseClassroomField1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        addPaymentDetail.getContentPane().add(addCourseClassroomField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 310, 30));
-        addPaymentDetail.getContentPane().add(addCourseCodeField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 310, 30));
-        addPaymentDetail.getContentPane().add(addCourseNameField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 310, 30));
-
-        addCourseAddButton1.setText("jButton1");
-        addPaymentDetail.getContentPane().add(addCourseAddButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 150, -1));
-
-        addCourseDepartmentLabel1.setText("jLabel2");
-        addPaymentDetail.getContentPane().add(addCourseDepartmentLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 30));
-
-        addCourseClassroomName1.setText("jLabel6");
-        addPaymentDetail.getContentPane().add(addCourseClassroomName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, 30));
-
-        addCourseCodeLabel1.setText("jLabel7");
-        addPaymentDetail.getContentPane().add(addCourseCodeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 170, 30));
-
-        addCourseNameLabel1.setText("jLabel8");
-        addPaymentDetail.getContentPane().add(addCourseNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 170, 30));
+        addPaymentDetailClassroomField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        addPaymentDetail.getContentPane().add(addPaymentDetailClassroomField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 310, 30));
+        addPaymentDetail.getContentPane().add(addPaymentDetailClassroomLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, 30));
+        addPaymentDetail.getContentPane().add(addPaymentDetailNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 310, 30));
+        addPaymentDetail.getContentPane().add(addPaymentDetailNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 170, 30));
+        addPaymentDetail.getContentPane().add(addPaymentDetailAmountField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 310, 30));
+        addPaymentDetail.getContentPane().add(addPaymentDetailAmountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 170, 30));
+        addPaymentDetail.getContentPane().add(addPaymentDetailAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 150, 30));
 
         wrapper.add(addPaymentDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 550, 350));
 
@@ -1648,7 +1637,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCategoryPaymentLabel.setText("jLabel6");
         addCategoryPayment.getContentPane().add(addCategoryPaymentLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 30));
         addCategoryPayment.getContentPane().add(addCategoryPaymentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 230, 30));
-        addCategoryPayment.getContentPane().add(addCategoryPaymentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 160, 120, 25));
+        addCategoryPayment.getContentPane().add(addCategoryPaymentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 160, 120, 30));
 
         wrapper.add(addCategoryPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 460, 240));
 
@@ -2386,6 +2375,14 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCategoryPaymentTitle.setText(setInternationalization("add.payment.category"));
         addCategoryPaymentLabel.setText(setInternationalization("category.name"));
         addCategoryPaymentButton.setText(setInternationalization("add.category"));
+        
+        addPaymentDetailTitlePanel.setText(setInternationalization("add.payment"));
+        addPaymentDetailCategoryLabel.setText(setInternationalization("category"));
+        addPaymentDetailClassroomLabel.setText(setInternationalization("classroom"));
+        addPaymentDetailNameLabel.setText(setInternationalization("payment.name"));
+        addPaymentDetailAmountLabel.setText(setInternationalization("payment.fee"));
+        addPaymentDetailAddButton.setText(setInternationalization("add.payment"));
+        
     }
     
     private void setUpTablePayment(){
@@ -2612,31 +2609,22 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel addClassroomTitlePanel;
     private javax.swing.JInternalFrame addCourse;
     private javax.swing.JButton addCourseAddButton;
-    private javax.swing.JButton addCourseAddButton1;
     private javax.swing.JButton addCourseAddButton2;
     private javax.swing.JComboBox<String> addCourseClassroomField;
-    private javax.swing.JComboBox<String> addCourseClassroomField1;
     private javax.swing.JComboBox<String> addCourseClassroomField2;
     private javax.swing.JLabel addCourseClassroomName;
-    private javax.swing.JLabel addCourseClassroomName1;
     private javax.swing.JLabel addCourseClassroomName2;
     private javax.swing.JTextField addCourseCodeField;
-    private javax.swing.JTextField addCourseCodeField1;
     private javax.swing.JTextField addCourseCodeField2;
     private javax.swing.JLabel addCourseCodeLabel;
-    private javax.swing.JLabel addCourseCodeLabel1;
     private javax.swing.JLabel addCourseCodeLabel2;
     private javax.swing.JComboBox<String> addCourseDepartmentField;
-    private javax.swing.JComboBox<String> addCourseDepartmentField1;
     private javax.swing.JComboBox<String> addCourseDepartmentField2;
     private javax.swing.JLabel addCourseDepartmentLabel;
-    private javax.swing.JLabel addCourseDepartmentLabel1;
     private javax.swing.JLabel addCourseDepartmentLabel2;
     private javax.swing.JTextField addCourseNameField;
-    private javax.swing.JTextField addCourseNameField1;
     private javax.swing.JTextField addCourseNameField2;
     private javax.swing.JLabel addCourseNameLabel;
-    private javax.swing.JLabel addCourseNameLabel1;
     private javax.swing.JLabel addCourseNameLabel2;
     private javax.swing.JInternalFrame addCourseTeacher;
     private javax.swing.JComboBox<String> addCourseTeacherClassroomField;
@@ -2644,7 +2632,6 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> addCourseTeacherSectionField;
     private javax.swing.JLabel addCourseTeacherTitleLabel;
     private javax.swing.JLabel addCourseTitlePanel;
-    private javax.swing.JLabel addCourseTitlePanel1;
     private javax.swing.JLabel addCourseTitlePanel2;
     private javax.swing.JInternalFrame addDepartment;
     private javax.swing.JButton addDepartmentAddButton;
@@ -2654,6 +2641,16 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel addDepartmentNameLabel;
     private javax.swing.JLabel addDepartmentTitlePanel;
     private javax.swing.JInternalFrame addPaymentDetail;
+    private javax.swing.JButton addPaymentDetailAddButton;
+    private javax.swing.JTextField addPaymentDetailAmountField;
+    private javax.swing.JLabel addPaymentDetailAmountLabel;
+    private javax.swing.JComboBox<String> addPaymentDetailCategoryField;
+    private javax.swing.JLabel addPaymentDetailCategoryLabel;
+    private javax.swing.JComboBox<String> addPaymentDetailClassroomField;
+    private javax.swing.JLabel addPaymentDetailClassroomLabel;
+    private javax.swing.JTextField addPaymentDetailNameField;
+    private javax.swing.JLabel addPaymentDetailNameLabel;
+    private javax.swing.JLabel addPaymentDetailTitlePanel;
     private javax.swing.JInternalFrame addSection;
     private javax.swing.JButton addSectionAddButton;
     private javax.swing.JComboBox<String> addSectionClassroomField;

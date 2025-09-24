@@ -381,6 +381,17 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCourseClassroomName2 = new javax.swing.JLabel();
         addCourseCodeLabel2 = new javax.swing.JLabel();
         addCourseNameLabel2 = new javax.swing.JLabel();
+        addCategory = new javax.swing.JInternalFrame();
+        addCategoryTitle = new javax.swing.JLabel();
+        addCategoryLabel = new javax.swing.JLabel();
+        addCategoryField = new javax.swing.JTextField();
+        addCategoryButton = new javax.swing.JButton();
+        detailCategory = new javax.swing.JInternalFrame();
+        detailCategoryTitle = new javax.swing.JLabel();
+        detailCategoryLabel = new javax.swing.JLabel();
+        detailCategoryField = new javax.swing.JTextField();
+        detailCategoryButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -667,6 +678,12 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         paymentDashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTabbedPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane2MouseClicked(evt);
+            }
+        });
+
         paymentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paymentPanelTitle.setFont(new java.awt.Font("Adwaita Sans", 0, 32)); // NOI18N
@@ -828,7 +845,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        paymentManagement.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 60, 180, -1));
+        paymentManagement.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 60, 180, -1));
 
         paymentCategoryTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -850,6 +867,11 @@ public class StaffDashboardView extends javax.swing.JFrame {
             }
         });
         paymentCategoryTable1.getTableHeader().setReorderingAllowed(false);
+        paymentCategoryTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paymentCategoryTable1MouseClicked(evt);
+            }
+        });
         jScrollPane18.setViewportView(paymentCategoryTable1);
         if (paymentCategoryTable1.getColumnModel().getColumnCount() > 0) {
             paymentCategoryTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -859,7 +881,12 @@ public class StaffDashboardView extends javax.swing.JFrame {
         paymentManagement.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 600, -1));
 
         jButton2.setText("Tambah Kategori");
-        paymentManagement.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(885, 60, 150, -1));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        paymentManagement.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 60, 150, -1));
 
         jTabbedPane2.addTab("tab2", paymentManagement);
 
@@ -1607,7 +1634,40 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCourseNameLabel2.setText("jLabel8");
         detailPaymentDetail.getContentPane().add(addCourseNameLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 170, 30));
 
-        wrapper.add(detailPaymentDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 550, 350));
+        wrapper.add(detailPaymentDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 550, 350));
+
+        addCategory.setClosable(true);
+        addCategory.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        addCategory.setVisible(true);
+        addCategory.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        addCategoryTitle.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
+        addCategoryTitle.setText("jLabel2");
+        addCategory.getContentPane().add(addCategoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 410, 30));
+
+        addCategoryLabel.setText("jLabel6");
+        addCategory.getContentPane().add(addCategoryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 30));
+        addCategory.getContentPane().add(addCategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 230, 30));
+        addCategory.getContentPane().add(addCategoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 160, 120, 25));
+
+        wrapper.add(addCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 460, 240));
+
+        detailCategory.setClosable(true);
+        detailCategory.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        detailCategory.setVisible(true);
+        detailCategory.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        detailCategoryTitle.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
+        detailCategoryTitle.setText("jLabel2");
+        detailCategory.getContentPane().add(detailCategoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 410, 30));
+
+        detailCategoryLabel.setText("jLabel6");
+        detailCategory.getContentPane().add(detailCategoryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 30));
+        detailCategory.getContentPane().add(detailCategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 230, 30));
+        detailCategory.getContentPane().add(detailCategoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 160, 120, 25));
+        detailCategory.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 120, 25));
+
+        wrapper.add(detailCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 460, 240));
 
         getContentPane().add(wrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
@@ -1900,13 +1960,19 @@ public class StaffDashboardView extends javax.swing.JFrame {
     }//GEN-LAST:event_paymentPanelCancelButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
+        addCategory.setVisible(false);
+        detailCategory.setVisible(false);
+        detailPaymentDetail.setVisible(false);
         addPaymentDetail.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void paymentCategoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentCategoryTableMouseClicked
        
+        addCategory.setVisible(false);
+        detailCategory.setVisible(false);
+        addPaymentDetail.setVisible(false);
         detailPaymentDetail.setVisible(true);
         
     }//GEN-LAST:event_paymentCategoryTableMouseClicked
@@ -1968,6 +2034,34 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_coursePanelAddActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        addPaymentDetail.setVisible(false);
+        detailPaymentDetail.setVisible(false);
+        detailCategory.setVisible(false);
+        addCategory.setVisible(true);
+        addCategory.toFront();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void paymentCategoryTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentCategoryTable1MouseClicked
+       
+        addPaymentDetail.setVisible(false);
+        detailPaymentDetail.setVisible(false);
+        addCategory.setVisible(false);
+        detailCategory.setVisible(true);
+        
+    }//GEN-LAST:event_paymentCategoryTable1MouseClicked
+
+    private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
+        
+        addPaymentDetail.setVisible(false);
+        detailPaymentDetail.setVisible(false);
+        addCategory.setVisible(false);
+        detailCategory.setVisible(false);
+        
+    }//GEN-LAST:event_jTabbedPane2MouseClicked
+
     private String[] search(String[] names, String key) {
         return Arrays.stream(names)
             .filter(x -> x.toLowerCase().contains(key.toLowerCase()))
@@ -1991,8 +2085,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
             addCourseTeacher,
             detailCourse,
             addPaymentDetail,
-            detailPaymentDetail
-            
+            detailPaymentDetail,
+            addCategory,
+            detailCategory
         };
     }
     
@@ -2499,6 +2594,11 @@ public class StaffDashboardView extends javax.swing.JFrame {
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JInternalFrame addCategory;
+    private javax.swing.JButton addCategoryButton;
+    private javax.swing.JTextField addCategoryField;
+    private javax.swing.JLabel addCategoryLabel;
+    private javax.swing.JLabel addCategoryTitle;
     private javax.swing.JInternalFrame addClassroom;
     private javax.swing.JButton addClassroomAddButton;
     private javax.swing.JComboBox<String> addClassroomClassroomField;
@@ -2576,6 +2676,11 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel coursePanelTitle;
     private javax.swing.JTable courseTable;
     private javax.swing.JTable departmentTable;
+    private javax.swing.JInternalFrame detailCategory;
+    private javax.swing.JButton detailCategoryButton;
+    private javax.swing.JTextField detailCategoryField;
+    private javax.swing.JLabel detailCategoryLabel;
+    private javax.swing.JLabel detailCategoryTitle;
     private javax.swing.JInternalFrame detailClassroom;
     private javax.swing.JButton detailClassroomDeleteButton;
     private javax.swing.JLabel detailClassroomDepartmentNameLabel;
@@ -2672,6 +2777,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> detailTeacherYearField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;

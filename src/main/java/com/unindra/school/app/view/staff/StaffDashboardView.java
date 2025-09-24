@@ -141,10 +141,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
         paymentManagementTitle = new javax.swing.JLabel();
         paymentManagementDesc = new javax.swing.JLabel();
         jScrollPane17 = new javax.swing.JScrollPane();
-        paymentCategoryTable = new javax.swing.JTable();
+        paymentDetailTable = new javax.swing.JTable();
         paymentManagementAddPayment = new javax.swing.JButton();
         jScrollPane18 = new javax.swing.JScrollPane();
-        paymentCategoryTable1 = new javax.swing.JTable();
+        paymentCategoryTable = new javax.swing.JTable();
         paymentManagementAddCategory = new javax.swing.JButton();
         transactionPanel = new javax.swing.JPanel();
         transactionPanelTitle = new javax.swing.JLabel();
@@ -807,7 +807,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         paymentManagementDesc.setFont(new java.awt.Font("Adwaita Sans", 0, 20)); // NOI18N
         paymentManagement.add(paymentManagementDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 450, 25));
 
-        paymentCategoryTable.setModel(new javax.swing.table.DefaultTableModel(
+        paymentDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -826,18 +826,18 @@ public class StaffDashboardView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        paymentCategoryTable.getTableHeader().setReorderingAllowed(false);
-        paymentCategoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        paymentDetailTable.getTableHeader().setReorderingAllowed(false);
+        paymentDetailTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                paymentCategoryTableMouseClicked(evt);
+                paymentDetailTableMouseClicked(evt);
             }
         });
-        jScrollPane17.setViewportView(paymentCategoryTable);
-        if (paymentCategoryTable.getColumnModel().getColumnCount() > 0) {
-            paymentCategoryTable.getColumnModel().getColumn(0).setResizable(false);
-            paymentCategoryTable.getColumnModel().getColumn(1).setResizable(false);
-            paymentCategoryTable.getColumnModel().getColumn(2).setResizable(false);
-            paymentCategoryTable.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane17.setViewportView(paymentDetailTable);
+        if (paymentDetailTable.getColumnModel().getColumnCount() > 0) {
+            paymentDetailTable.getColumnModel().getColumn(0).setResizable(false);
+            paymentDetailTable.getColumnModel().getColumn(1).setResizable(false);
+            paymentDetailTable.getColumnModel().getColumn(2).setResizable(false);
+            paymentDetailTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
         paymentManagement.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 600, -1));
@@ -850,7 +850,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         });
         paymentManagement.add(paymentManagementAddPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 55, 180, 30));
 
-        paymentCategoryTable1.setModel(new javax.swing.table.DefaultTableModel(
+        paymentCategoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -869,16 +869,16 @@ public class StaffDashboardView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        paymentCategoryTable1.getTableHeader().setReorderingAllowed(false);
-        paymentCategoryTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        paymentCategoryTable.getTableHeader().setReorderingAllowed(false);
+        paymentCategoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                paymentCategoryTable1MouseClicked(evt);
+                paymentCategoryTableMouseClicked(evt);
             }
         });
-        jScrollPane18.setViewportView(paymentCategoryTable1);
-        if (paymentCategoryTable1.getColumnModel().getColumnCount() > 0) {
-            paymentCategoryTable1.getColumnModel().getColumn(0).setResizable(false);
-            paymentCategoryTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane18.setViewportView(paymentCategoryTable);
+        if (paymentCategoryTable.getColumnModel().getColumnCount() > 0) {
+            paymentCategoryTable.getColumnModel().getColumn(0).setResizable(false);
+            paymentCategoryTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
         paymentManagement.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 600, -1));
@@ -1969,14 +1969,14 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_paymentManagementAddPaymentActionPerformed
 
-    private void paymentCategoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentCategoryTableMouseClicked
+    private void paymentDetailTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentDetailTableMouseClicked
        
         addCategoryPayment.setVisible(false);
         detailCategory.setVisible(false);
         addPaymentDetail.setVisible(false);
         detailPaymentDetail.setVisible(true);
         
-    }//GEN-LAST:event_paymentCategoryTableMouseClicked
+    }//GEN-LAST:event_paymentDetailTableMouseClicked
 
     private void studentPanelAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentPanelAddStudentActionPerformed
         
@@ -2045,14 +2045,14 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_paymentManagementAddCategoryActionPerformed
 
-    private void paymentCategoryTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentCategoryTable1MouseClicked
+    private void paymentCategoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentCategoryTableMouseClicked
        
         addPaymentDetail.setVisible(false);
         detailPaymentDetail.setVisible(false);
         addCategoryPayment.setVisible(false);
         detailCategory.setVisible(true);
         
-    }//GEN-LAST:event_paymentCategoryTable1MouseClicked
+    }//GEN-LAST:event_paymentCategoryTableMouseClicked
 
     private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
         
@@ -2431,6 +2431,28 @@ public class StaffDashboardView extends javax.swing.JFrame {
         for(int i = 0; i < header.length; i++){
             model.getColumn(i).setHeaderValue(header[i]);
         }
+        
+        header = new String[]{
+            setInternationalization("category.name"),
+            setInternationalization("total.payment")
+        };
+        model = paymentCategoryTable.getColumnModel();
+        for (int i = 0; i < header.length; i++){
+            model.getColumn(i).setHeaderValue(header[i]);
+        }
+        
+        header = new String[]{
+            setInternationalization("category"),
+            setInternationalization("payment.name"),
+            setInternationalization("classroom"),
+            setInternationalization("amount")
+        };
+        model = paymentDetailTable.getColumnModel();
+        for (int i = 0; i < header.length; i++){
+            model.getColumn(i).setHeaderValue(header[i]);
+        }
+        
+
     }
     
     private void setUpTransacationPanel(){
@@ -2835,8 +2857,8 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JButton payButton;
     private javax.swing.JTable payingTable;
     private javax.swing.JTable paymentCategoryTable;
-    private javax.swing.JTable paymentCategoryTable1;
     private javax.swing.JPanel paymentDashboard;
+    private javax.swing.JTable paymentDetailTable;
     private javax.swing.JComboBox<String> paymentList;
     private javax.swing.JPanel paymentManagement;
     private javax.swing.JButton paymentManagementAddCategory;

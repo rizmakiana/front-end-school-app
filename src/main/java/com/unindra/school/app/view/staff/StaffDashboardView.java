@@ -2131,7 +2131,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
     }
         
     private void setUpRegionCombobox() throws IOException {
-        /*
+    
         RegionService service = new RegionService();
         String provinceId = staffResponse.getDistrictResponse().getId().substring(0, 2);
         String regencyId = staffResponse.getDistrictResponse().getId().substring(0, 4);
@@ -2146,7 +2146,6 @@ public class StaffDashboardView extends javax.swing.JFrame {
         settingPanelProvinceList.setSelectedItem(new RegionResponse(provinceId, null));
         settingPanelRegencyList.setSelectedItem(new RegionResponse(regencyId, null));
         settingPanelDistrictList.setSelectedItem(new RegionResponse(districtId, null));
-        */
     }
     
     private void setUpProfile() throws IOException{
@@ -2629,7 +2628,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         settingPanelDate.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getDateList()));
         settingPanelYear.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getYearListTeacher()));
         
-        // setUpProfile();
+         setUpProfile();
         
         settingPanelnewPassword.setEnabled(false);
         settingPanelConfirmNewPassword.setEnabled(false);

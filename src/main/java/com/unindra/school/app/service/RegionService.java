@@ -53,19 +53,19 @@ public class RegionService {
 
     // Ambil semua provinsi
     public List<RegionResponse> getProvinces() throws IOException {
-        String url = AppManager.getWebName() + "/api/regions/provinces";
+        String url = AppManager.getWebName() + "/api/region/provinces";
         return fetchRegionList(url);
     }
 
     // Ambil semua kabupaten/kota berdasarkan provinceId
     public List<RegionResponse> getRegencies(String provinceId) throws IOException {
-        String url = AppManager.getWebName() + "/api/regions/provinces/" + provinceId + "/regencies";
+        String url = AppManager.getWebName() + "/api/region/regencies?provinceId=" + provinceId;
         return fetchRegionList(url);
     }
 
     // Ambil semua kecamatan berdasarkan regencyId
     public List<RegionResponse> getDistricts(String regencyId) throws IOException {
-        String url = AppManager.getWebName() + "/api/regions/regencies/" + regencyId + "/districts";
+        String url = AppManager.getWebName() + "/api/region/districts?regencyId=" + regencyId;
         return fetchRegionList(url);
     }
     

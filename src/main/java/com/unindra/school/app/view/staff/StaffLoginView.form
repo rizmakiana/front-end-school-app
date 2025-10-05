@@ -436,6 +436,9 @@
                       </Constraints>
                     </Component>
                     <Component class="com.unindra.school.app.components.RegionComboBox" name="registerProvinceBirthplace">
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="registerProvinceBirthplaceItemStateChanged"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="15" y="185" width="180" height="35"/>
@@ -450,6 +453,9 @@
                       </Constraints>
                     </Component>
                     <Component class="com.unindra.school.app.components.RegionComboBox" name="registerAddressProvinceField">
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="registerAddressProvinceFieldItemStateChanged"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="15" y="305" width="355" height="35"/>
@@ -457,6 +463,9 @@
                       </Constraints>
                     </Component>
                     <Component class="com.unindra.school.app.components.RegionComboBox" name="registerAddressRegencyField">
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="registerAddressRegencyFieldItemStateChanged"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="15" y="345" width="175" height="35"/>

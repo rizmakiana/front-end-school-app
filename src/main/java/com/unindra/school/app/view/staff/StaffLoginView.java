@@ -10,6 +10,7 @@ import com.unindra.school.app.view.staff.*;
 import com.unindra.school.app.entity.StaffResponse;
 import com.unindra.school.app.model.Gender;
 import com.unindra.school.app.model.LoginRequest;
+import com.unindra.school.app.model.RegionResponse;
 import com.unindra.school.app.model.RegisterStaffRequest;
 import com.unindra.school.app.service.AuthService;
 import com.unindra.school.app.service.ComboBoxUtil;
@@ -30,9 +31,12 @@ import javax.swing.JToggleButton;
 
 import com.unindra.school.app.util.AppManager;
 import com.unindra.school.app.view.SelectRoleView;
+import java.awt.event.ItemEvent;
 import java.io.IOException;
+import java.util.List;
 
 import java.util.Locale;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -44,6 +48,7 @@ import javax.swing.JOptionPane;
  */
 public class StaffLoginView extends javax.swing.JFrame {
 
+    RegionService service = new RegionService();
     /**
      * Creates new form StaffLoginView
      */
@@ -218,9 +223,27 @@ public class StaffLoginView extends javax.swing.JFrame {
 
         registerButton.setText("jButton1");
         jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 710, 355, 35));
+
+        registerProvinceBirthplace.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                registerProvinceBirthplaceItemStateChanged(evt);
+            }
+        });
         jPanel1.add(registerProvinceBirthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 185, 180, 35));
         jPanel1.add(registerRegencyBirthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 185, 170, 35));
+
+        registerAddressProvinceField.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                registerAddressProvinceFieldItemStateChanged(evt);
+            }
+        });
         jPanel1.add(registerAddressProvinceField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 305, 355, 35));
+
+        registerAddressRegencyField.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                registerAddressRegencyFieldItemStateChanged(evt);
+            }
+        });
         jPanel1.add(registerAddressRegencyField, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 345, 175, 35));
         jPanel1.add(registerAddressDistrictField, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 345, 175, 35));
 
@@ -315,7 +338,7 @@ public class StaffLoginView extends javax.swing.JFrame {
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         
-        /*  
+        /*
         String username = signInusernameField.getText();
         String password = new String(signInpasswordField.getPassword());
           
@@ -353,13 +376,54 @@ public class StaffLoginView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registerNameFieldKeyReleased
 
-    private void setupRegionComboBox() throws IOException{
+    private void registerProvinceBirthplaceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_registerProvinceBirthplaceItemStateChanged
+        
+        try {
+            registerRegencyBirthplace.setItems(service.getRegencies(registerProvinceBirthplace.getSelectedRegion().getId()));
+        } catch (IOException ex) {
+            Logger.getLogger(StaffLoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_registerProvinceBirthplaceItemStateChanged
 
-//        RegionService service = new RegionService();
-//      
-//        provinceField.setItems(service.getProvinces());        
-//        regencyField.setItems(service.getRegencies(provinceField.getSelectedRegion().getId()));
-//        districtField.setItems(service.getDistricts(regencyField.getSelectedRegion().getId()));
+    private void registerAddressProvinceFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_registerAddressProvinceFieldItemStateChanged
+        
+        try {
+            registerAddressRegencyField.setItems(service.getRegencies(registerAddressProvinceField.getSelectedRegion().getId()));
+            registerAddressDistrictField.setItems(service.getDistricts(registerAddressRegencyField.getSelectedRegion().getId()));
+        } catch (IOException ex) {
+            Logger.getLogger(StaffLoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_registerAddressProvinceFieldItemStateChanged
+
+    private void registerAddressRegencyFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_registerAddressRegencyFieldItemStateChanged
+        
+        if (evt.getStateChange() != ItemEvent.SELECTED) {
+            return;
+        }
+
+        Object item = evt.getItem();
+        if (!(item instanceof RegionResponse region)) {
+            return;
+        }
+
+        try {
+            registerAddressDistrictField.setItems(service.getDistricts(region.getId()));
+        } catch (IOException ex) {
+            Logger.getLogger(StaffLoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+    }//GEN-LAST:event_registerAddressRegencyFieldItemStateChanged
+
+    private void setupRegionComboBox() throws IOException{
+        
+        registerProvinceBirthplace.setItems(service.getProvinces());
+        registerRegencyBirthplace.setItems(service.getRegencies(registerProvinceBirthplace.getSelectedRegion().getId()));
+        
+        registerAddressProvinceField.setItems(service.getProvinces());
+        registerAddressRegencyField.setItems(service.getRegencies(registerAddressProvinceField.getSelectedRegion().getId()));
+        registerAddressDistrictField.setItems(service.getDistricts(registerAddressRegencyField.getSelectedRegion().getId()));
 
     }
     

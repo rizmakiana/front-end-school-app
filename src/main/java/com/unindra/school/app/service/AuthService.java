@@ -36,7 +36,7 @@ public class AuthService {
 
         RequestBody requestBody = RequestBody.create(jsonRequest, MediaType.parse("application/json"));
         Request requestHttp = new Request.Builder()
-                .url(AppManager.getWebName() + "/api/auth/login/staff")
+                .url(AppManager.getWebName() + "/api/auth/login")
                 .header("Accept-Language", AppManager.getLocale().toLanguageTag())
                 .post(requestBody)
                 .build();

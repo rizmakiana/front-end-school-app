@@ -2133,9 +2133,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private void setUpRegionCombobox() throws IOException {
     
         RegionService service = new RegionService();
-        String provinceId = staffResponse.getDistrictResponse().getId().substring(0, 2);
-        String regencyId = staffResponse.getDistrictResponse().getId().substring(0, 4);
-        String districtId = staffResponse.getDistrictResponse().getId();
+        String provinceId = staffResponse.getDistrictAddress().substring(0, 2);
+        String regencyId = staffResponse.getDistrictAddress().substring(0, 4);
+        String districtId = staffResponse.getDistrictAddress();
 
         // isi data
         settingPanelProvinceList.setItems(service.getProvinces());
@@ -2158,9 +2158,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
         settingPanelEmailField.setText(staffResponse.getEmail());
         settingPanelPhoneNumberField.setText(staffResponse.getPhoneNumber());
         
-        settingPanelDate.setSelectedItem(String.valueOf(staffResponse.getBirthDate().getDayOfMonth()));
-        settingPanelMonth.setSelectedIndex(staffResponse.getBirthDate().getMonthValue() -1);
-        settingPanelYear.setSelectedItem(String.valueOf(staffResponse.getBirthDate().getYear()));        
+        settingPanelDate.setSelectedItem(String.valueOf(staffResponse.getBirthDate()));
+        settingPanelMonth.setSelectedIndex(staffResponse.getBirthMonth() + 1);
+        settingPanelYear.setSelectedItem(String.valueOf(staffResponse.getBirthYear()));        
     }
     
     private void setUpStudentTable(){
@@ -2628,7 +2628,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         settingPanelDate.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getDateList()));
         settingPanelYear.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getYearListTeacher()));
         
-         setUpProfile();
+        setUpProfile();
         
         settingPanelnewPassword.setEnabled(false);
         settingPanelConfirmNewPassword.setEnabled(false);

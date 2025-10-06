@@ -48,7 +48,7 @@ import javax.swing.JOptionPane;
  */
 public class StaffLoginView extends javax.swing.JFrame {
 
-    RegionService service = new RegionService();
+    RegionService regionService = new RegionService();
     /**
      * Creates new form StaffLoginView
      */
@@ -222,6 +222,11 @@ public class StaffLoginView extends javax.swing.JFrame {
         jPanel1.add(registerPhoneNumberLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 610, 150, -1));
 
         registerButton.setText("jButton1");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 710, 355, 35));
 
         registerProvinceBirthplace.addItemListener(new java.awt.event.ItemListener() {
@@ -338,7 +343,7 @@ public class StaffLoginView extends javax.swing.JFrame {
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         
-        /*
+        
         String username = signInusernameField.getText();
         String password = new String(signInpasswordField.getPassword());
           
@@ -350,9 +355,9 @@ public class StaffLoginView extends javax.swing.JFrame {
             StaffResponse staff = new AuthService().getCurrentStaff();
               
             JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.PLAIN_MESSAGE);
-            */
+            
             try {
-                StaffResponse staff = new StaffResponse();
+//                StaffResponse staff = new StaffResponse();
                 //StaffDashboardView view = new StaffDashboardView(staff);
                 StaffDashboardView view = new StaffDashboardView(staff);
                 view.setVisible(true);
@@ -362,11 +367,11 @@ public class StaffLoginView extends javax.swing.JFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            /*
+            
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
         }
-        */
+        
         
     }//GEN-LAST:event_signInButtonActionPerformed
 
@@ -379,7 +384,7 @@ public class StaffLoginView extends javax.swing.JFrame {
     private void registerProvinceBirthplaceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_registerProvinceBirthplaceItemStateChanged
         
         try {
-            registerRegencyBirthplace.setItems(service.getRegencies(registerProvinceBirthplace.getSelectedRegion().getId()));
+            registerRegencyBirthplace.setItems(regionService.getRegencies(registerProvinceBirthplace.getSelectedRegion().getId()));
         } catch (IOException ex) {
             Logger.getLogger(StaffLoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -389,8 +394,8 @@ public class StaffLoginView extends javax.swing.JFrame {
     private void registerAddressProvinceFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_registerAddressProvinceFieldItemStateChanged
         
         try {
-            registerAddressRegencyField.setItems(service.getRegencies(registerAddressProvinceField.getSelectedRegion().getId()));
-            registerAddressDistrictField.setItems(service.getDistricts(registerAddressRegencyField.getSelectedRegion().getId()));
+            registerAddressRegencyField.setItems(regionService.getRegencies(registerAddressProvinceField.getSelectedRegion().getId()));
+            registerAddressDistrictField.setItems(regionService.getDistricts(registerAddressRegencyField.getSelectedRegion().getId()));
         } catch (IOException ex) {
             Logger.getLogger(StaffLoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -409,21 +414,54 @@ public class StaffLoginView extends javax.swing.JFrame {
         }
 
         try {
-            registerAddressDistrictField.setItems(service.getDistricts(region.getId()));
+            registerAddressDistrictField.setItems(regionService.getDistricts(region.getId()));
         } catch (IOException ex) {
             Logger.getLogger(StaffLoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
              
     }//GEN-LAST:event_registerAddressRegencyFieldItemStateChanged
 
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        
+        RegisterStaffRequest request = new RegisterStaffRequest();
+       
+       request.setName(registerNameField.getText());
+       Gender g = (registerGenderField.getSelectedIndex() == 0) ? Gender.MALE : Gender.FEMALE;
+       request.setGender(g);
+       request.setBirthPlaceRegency(registerAddressRegencyField.getSelectedRegion().getId());
+       request.setBirthDate(registerDateField.getSelectedItem().toString());
+       request.setBirthMonth(registerMonthField.getSelectedIndex() + 1);
+       request.setBirthYear(registerYearField.getSelectedItem().toString());
+       request.setDistrictAddress(registerAddressDistrictField.getSelectedRegion().getId());
+       request.setAddress(registerAddressField.getText());
+       request.setUsername(registerUsernameField.getText());
+       request.setPassword(new String (registerPasswordField.getPassword()));
+       request.setConfirmPassword(new String (registerConfirmPasswordField.getPassword()));
+       request.setEmail(registerEmailField.getText());
+       request.setPhoneNumber(registerPhoneNumberField.getText());
+        
+        StaffService service = new StaffService();
+        
+        try {
+            
+            String response = service.register(request);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.PLAIN_MESSAGE);
+            clearFormRegistration();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_registerButtonActionPerformed
+
     private void setupRegionComboBox() throws IOException{
         
-        registerProvinceBirthplace.setItems(service.getProvinces());
-        registerRegencyBirthplace.setItems(service.getRegencies(registerProvinceBirthplace.getSelectedRegion().getId()));
+        registerProvinceBirthplace.setItems(regionService.getProvinces());
+        registerRegencyBirthplace.setItems(regionService.getRegencies(registerProvinceBirthplace.getSelectedRegion().getId()));
         
-        registerAddressProvinceField.setItems(service.getProvinces());
-        registerAddressRegencyField.setItems(service.getRegencies(registerAddressProvinceField.getSelectedRegion().getId()));
-        registerAddressDistrictField.setItems(service.getDistricts(registerAddressRegencyField.getSelectedRegion().getId()));
+        registerAddressProvinceField.setItems(regionService.getProvinces());
+        registerAddressRegencyField.setItems(regionService.getRegencies(registerAddressProvinceField.getSelectedRegion().getId()));
+        registerAddressDistrictField.setItems(regionService.getDistricts(registerAddressRegencyField.getSelectedRegion().getId()));
 
     }
     
@@ -475,50 +513,18 @@ public class StaffLoginView extends javax.swing.JFrame {
     }// GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void clearFormRegistration(){
-//        registerNameField.setText("");
-//        registerGenderField.setSelectedIndex(0);
-//        registerUsernameField.setText("");
-//        registerPasswordField.setText("");
-//        registerRePasswordField.setText("");
-//        registerDateField.setSelectedIndex(0);
-//        registerMonthField.setSelectedIndex(0);
-//        registerYearField.setSelectedItem("");
-//        registerEmail.setText("");
-//        registerPhoneNumber.setText("");
-//        provinceField.setSelectedIndex(0);
-//        regencyField.setSelectedIndex(0);
-//        districtField.setSelectedIndex(0);
+        registerNameField.setText("");
+        registerGenderField.setSelectedIndex(0);
+        registerUsernameField.setText("");
+        registerPasswordField.setText("");
+        registerConfirmPasswordField.setText("");
+        registerDateField.setSelectedIndex(0);
+        registerMonthField.setSelectedIndex(0);
+        registerYearField.setSelectedItem("");
+        registerEmailField.setText("");
+        registerPhoneNumberField.setText("");
     }
     
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_registerButtonActionPerformed
-        /*
-        RegisterStaffRequest request = new RegisterStaffRequest();
-
-        request.setName(registerNameField.getText());
-        request.setGender(registerGenderField.getSelectedIndex() == 0 ? Gender.MALE : Gender.FEMALE);
-        request.setUsername(registerUsernameField.getText());
-        request.setPassword(new String(registerPasswordField.getPassword()));
-        request.setConfirmPassword(new String(registerRePasswordField.getPassword()));
-        request.setBirthdate(registerDateField.getSelectedItem().toString());
-        request.setBirthmonth(registerMonthField.getSelectedIndex() + 1);
-        request.setBirthyear(registerYearField.getSelectedItem().toString());
-        request.setEmail(registerEmail.getText());
-        request.setPhoneNumber(registerPhoneNumber.getText());
-        request.setDistrictId(districtField.getSelectedRegion().getId());
-        
-        try {
-            StaffService service = new StaffService();
-            
-            String response = service.register(request);
-            
-            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.PLAIN_MESSAGE);
-            clearFormRegistration();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
-        } 
-        */ 
-    }// GEN-LAST:event_registerButtonActionPerformed
-
     public void scaleButtonIcon(JToggleButton button) {
         if (button.getIcon() != null && button.getIcon() instanceof ImageIcon) {
             int width = button.getWidth();

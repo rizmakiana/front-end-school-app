@@ -48,6 +48,7 @@ com/unindra/school/app/view/staff/StaffDashboardView$32.class
 com/unindra/school/app/view/teacher/TeacherDashboardView$2.class
 com/unindra/school/app/model/RegisterStaffRequest.class
 com/unindra/school/app/view/staff/StaffDashboardView$22.class
+com/unindra/school/app/view/staff/StaffLoginView$11.class
 com/unindra/school/app/view/staff/StaffDashboardView$12.class
 com/unindra/school/app/view/teacher/TeacherDashboardView$11.class
 com/unindra/school/app/view/staff/StaffLoginView$9.class

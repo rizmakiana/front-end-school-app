@@ -32,15 +32,12 @@ public class StaffService {
 
         RequestBody requestBody = RequestBody.create(json, MediaType.parse("application/json"));
         Request requestHttp = new Request.Builder()
-                .url(AppManager.getWebName() + "/api/staff/register")
+                .url(AppManager.getWebName() + "/api/staff")
                 .header("Accept-Language", AppManager.getLocale().toLanguageTag())
                 .post(requestBody)
                 .build();
 
         try (Response response = client.newCall(requestHttp).execute()) {
-            //  if (!response.isSuccessful()) {
-            //      throw new IOException("Unexpected HTTP code: " + response.code());
-            //  }
 
             String jsonResponse = response.body().string(); // convert response ke string
             WebResponse<?> responseBody = om.readValue(jsonResponse, WebResponse.class);

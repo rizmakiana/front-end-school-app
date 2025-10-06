@@ -1,4 +1,4 @@
-package com.unindra.school.app.model;
+package com.unindra.school.app.model.request;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

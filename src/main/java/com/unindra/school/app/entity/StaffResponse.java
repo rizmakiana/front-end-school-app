@@ -4,7 +4,7 @@
  */
 package com.unindra.school.app.entity;
 
-import com.unindra.school.app.model.Gender;
+import com.unindra.school.app.model.util.Gender;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

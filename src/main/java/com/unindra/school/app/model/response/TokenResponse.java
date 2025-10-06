@@ -1,4 +1,4 @@
-package com.unindra.school.app.model;
+package com.unindra.school.app.model.response;
 
 
 import java.util.Date;

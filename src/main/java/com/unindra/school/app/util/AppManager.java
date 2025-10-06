@@ -1,7 +1,7 @@
 package com.unindra.school.app.util;
 
 
-import com.unindra.school.app.model.TokenResponse;
+import com.unindra.school.app.model.response.TokenResponse;
 import java.util.Locale;
 
 import javax.swing.SwingUtilities;

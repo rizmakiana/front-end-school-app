@@ -1,4 +1,4 @@
-package com.unindra.school.app.model;
+package com.unindra.school.app.model.util;
 
 public enum Gender {
     

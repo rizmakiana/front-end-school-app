@@ -4,13 +4,16 @@
  */
 package com.unindra.school.app.view.staff;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.unindra.school.app.service.DepartmentService;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.icons.FlatSearchIcon;
 import com.unindra.school.app.entity.StaffResponse;
-import com.unindra.school.app.model.Gender;
-import com.unindra.school.app.model.RegionResponse;
+import com.unindra.school.app.model.request.DepartmentRequest;
+import com.unindra.school.app.model.util.Gender;
+import com.unindra.school.app.model.response.RegionResponse;
 import com.unindra.school.app.service.ComboBoxUtil;
 import com.unindra.school.app.service.RegionService;
 import com.unindra.school.app.util.AppManager;
@@ -33,6 +36,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
+import javax.imageio.IIOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -40,6 +44,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
@@ -1175,6 +1180,12 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addDepartment.getContentPane().add(addDepartmentTitlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 250, 30));
         addDepartment.getContentPane().add(addDepartmentDepartmentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 300, 30));
         addDepartment.getContentPane().add(addDepartmentCodeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 300, 30));
+
+        addDepartmentAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDepartmentAddButtonActionPerformed(evt);
+            }
+        });
         addDepartment.getContentPane().add(addDepartmentAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 160, 30));
 
         addDepartmentCodeLabel.setText("jLabel2");
@@ -2062,6 +2073,28 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailCategory.setVisible(false);
         
     }//GEN-LAST:event_jTabbedPane2MouseClicked
+
+    private void addDepartmentAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDepartmentAddButtonActionPerformed
+        
+        DepartmentRequest request = new DepartmentRequest();
+        request.setName(addDepartmentDepartmentField.getText());
+        request.setCode(addDepartmentCodeField.getText());
+        
+        DepartmentService department = new DepartmentService();
+        
+        try {
+            String response = department.add(request);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.PLAIN_MESSAGE);
+            
+            addDepartment.setVisible(false);
+            addDepartmentDepartmentField.setText("");
+            addDepartmentCodeField.setText("");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_addDepartmentAddButtonActionPerformed
 
     private String[] search(String[] names, String key) {
         return Arrays.stream(names)

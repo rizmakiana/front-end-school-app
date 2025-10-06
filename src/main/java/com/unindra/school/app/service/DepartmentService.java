@@ -1,12 +1,15 @@
 package com.unindra.school.app.service;
 
+
+import com.unindra.school.app.model.request.DepartmentRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unindra.school.app.model.request.RegisterStaffRequest;
 import com.unindra.school.app.model.response.WebResponse;
 import com.unindra.school.app.util.AppManager;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
+import javax.imageio.IIOException;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -22,45 +25,44 @@ import okhttp3.Response;
  *
  * @author rizmakiana
  */
-public class StaffService {
+public class DepartmentService {
     
     private final ObjectMapper om = new ObjectMapper();
     private final OkHttpClient client = new OkHttpClient();
     
-    public String register(RegisterStaffRequest request) throws IOException {
-        String json = om.writeValueAsString(request);
-
-        RequestBody requestBody = RequestBody.create(json, MediaType.parse("application/json"));
-        Request requestHttp = new Request.Builder()
-                .url(AppManager.getWebName() + "/api/staff")
+    public String add(DepartmentRequest request) throws IOException{
+        String jsonRequest = om.writeValueAsString(request);
+                
+        RequestBody requestBody = RequestBody.create(jsonRequest, MediaType.parse("application/json"));
+        Request httpRequest = new Request.Builder()
+                .url(AppManager.getWebName() + "/api/staff/departments")
                 .header("Accept-Language", AppManager.getLocale().toLanguageTag())
+                .addHeader("Authorization", "Bearer " + AppManager.getToken().getToken())
                 .post(requestBody)
                 .build();
-
-        try (Response response = client.newCall(requestHttp).execute()) {
-
-            String jsonResponse = response.body().string(); // convert response ke string
-            WebResponse<?> responseBody = om.readValue(jsonResponse, WebResponse.class);
-
-            Object errors = responseBody.getErrors();
-            if (errors != null) {
+        
+        try (Response response = client.newCall(httpRequest).execute()) {
+            
+            String jsonResponse = response.body().string();
+            WebResponse<String> webResponse = om.readValue(
+                    jsonResponse, new TypeReference<WebResponse<String>>() {}
+            );
+            
+            Object errors = webResponse.getErrors();
+            if (errors != null){
                 String errorMessage;
-
-                if (errors instanceof Map<?, ?> map) {
-                    // ambil error pertama aja
+                if (errors instanceof Map<?,?> map) {
                     errorMessage = map.values().stream()
                             .findFirst()
                             .map(Object::toString)
                             .orElse("Unknown error");
                 } else {
-                    // fallback String atau tipe lain
                     errorMessage = errors.toString();
                 }
-
                 throw new IOException(errorMessage);
             }
-
-            return responseBody.getMessage();
+            return webResponse.getMessage();
         }
     }
+    
 }

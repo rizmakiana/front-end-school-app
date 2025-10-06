@@ -5,10 +5,10 @@
 package com.unindra.school.app.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.unindra.school.app.model.LoginRequest;
+import com.unindra.school.app.model.request.LoginRequest;
 import com.unindra.school.app.entity.StaffResponse;
-import com.unindra.school.app.model.TokenResponse;
-import com.unindra.school.app.model.WebResponse;
+import com.unindra.school.app.model.response.TokenResponse;
+import com.unindra.school.app.model.response.WebResponse;
 import com.unindra.school.app.util.AppManager;
 import java.io.IOException;
 import java.util.Map;

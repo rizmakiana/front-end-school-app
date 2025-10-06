@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.unindra.school.app.model;
+package com.unindra.school.app.model.request;
 
+import com.unindra.school.app.model.util.Gender;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

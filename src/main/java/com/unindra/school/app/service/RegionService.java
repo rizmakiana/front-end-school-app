@@ -5,8 +5,8 @@
 package com.unindra.school.app.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unindra.school.app.model.RegionResponse;
-import com.unindra.school.app.model.WebResponse;
+import com.unindra.school.app.model.response.RegionResponse;
+import com.unindra.school.app.model.response.WebResponse;
 import com.unindra.school.app.util.AppManager;
 import java.io.IOException;
 import java.util.List;

@@ -4,7 +4,7 @@
  */
 package com.unindra.school.app.components;
 
-import com.unindra.school.app.model.RegionResponse;
+import com.unindra.school.app.model.response.RegionResponse;
 import javax.swing.JComboBox;
 
 /**

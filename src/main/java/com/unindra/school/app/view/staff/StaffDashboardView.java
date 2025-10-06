@@ -12,6 +12,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.icons.FlatSearchIcon;
 import com.unindra.school.app.entity.StaffResponse;
 import com.unindra.school.app.model.request.DepartmentRequest;
+import com.unindra.school.app.model.response.DepartmentResponse;
 import com.unindra.school.app.model.util.Gender;
 import com.unindra.school.app.model.response.RegionResponse;
 import com.unindra.school.app.service.ComboBoxUtil;
@@ -31,6 +32,7 @@ import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -1686,6 +1688,21 @@ public class StaffDashboardView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    private void loadDepartmentsData() throws IOException{
+        
+        DefaultTableModel model = (DefaultTableModel) departmentTable.getModel();
+        model.setRowCount(0);
+        
+        DepartmentService service =  new DepartmentService();
+        List<DepartmentResponse> data = service.getAll();
+        for(DepartmentResponse response : data){
+            model.addRow(new Object[]{
+                response.getCode(),
+                response.getName()
+            });
+        }        
+    }
+    
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         
         try {
@@ -1722,12 +1739,16 @@ public class StaffDashboardView extends javax.swing.JFrame {
         } else {
             AppManager.setLocale(Locale.forLanguageTag("en-US"));
         }
-        initInternationalization();
-        /*
-        settingPanelDate.setSelectedItem(staffResponse.getBirthDate().getDayOfMonth());
-        settingPanelMonth.setSelectedIndex(staffResponse.getBirthDate().getMonthValue() + 1);
-        settingPanelYear.setSelectedItem(staffResponse.getBirthDate().getYear());
-        */
+        try {
+            initInternationalization();
+            /*
+            settingPanelDate.setSelectedItem(staffResponse.getBirthDate().getDayOfMonth());
+            settingPanelMonth.setSelectedIndex(staffResponse.getBirthDate().getMonthValue() + 1);
+            settingPanelYear.setSelectedItem(staffResponse.getBirthDate().getYear());
+            */
+        } catch (IOException ex) {
+            Logger.getLogger(StaffDashboardView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
@@ -1778,7 +1799,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
     }//GEN-LAST:event_studentTableMouseClicked
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        
+
         for(JInternalFrame value : getInternalFrames()){
             value.setVisible(false);
         }
@@ -1799,6 +1820,21 @@ public class StaffDashboardView extends javax.swing.JFrame {
     }//GEN-LAST:event_teacherTableMouseClicked
 
     private void departmentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentTableMouseClicked
+
+        int row = departmentTable.getSelectedRow();
+        String code = departmentTable.getValueAt(row, 0).toString();
+        
+        DepartmentService service = new DepartmentService();
+        DepartmentResponse department = new DepartmentResponse();
+        try {
+             department = service.getByCode(code);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        id = department.getId();
+        System.out.println("ID : " + id);
+        detailDepartmentNameField.setText(department.getName());
+        detailDepartmentTotalClassroomField.setText(String.valueOf(department.getTotalClassroom()));
         
         detailDepartment.setVisible(true);
         detailClassroom.setVisible(false);
@@ -2296,7 +2332,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }
     
-    private void setUpClassroomTable(){
+    private void setUpClassroomTable() throws IOException{
         String[] headerDepartment = new String[]{
             setInternationalization("department.id"),
             setInternationalization("department.name")
@@ -2306,6 +2342,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
         for (int i = 0; i < headerDepartment.length; i++){
             model.getColumn(i).setHeaderValue(headerDepartment[i]);
         }
+        
+        loadDepartmentsData();
+        
         
         String[] headerClassroom = new String[]{
             setInternationalization("classroom.id"),
@@ -2529,7 +2568,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         return MessageFormat.format(template, value);
     }
     
-    private void initInternationalization(){
+    private void initInternationalization() throws IOException{
         
         jLabel1.setText(setInternationalization("greeting.message", staffResponse.getName()));
         

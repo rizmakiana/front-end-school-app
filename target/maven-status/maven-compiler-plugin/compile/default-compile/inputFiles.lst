@@ -1,11 +1,12 @@
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/SchoolApp.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/components/JCard.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/components/RegionComboBox.java
-/home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/entity/DistrictResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/entity/StaffResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/DepartmentRequest.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/LoginRequest.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/RegisterStaffRequest.java
+/home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/DepartmentResponse.java
+/home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/DistrictResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/PagingResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/RegionResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/TokenResponse.java

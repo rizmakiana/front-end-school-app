@@ -11,7 +11,7 @@ import com.unindra.school.app.model.util.Gender;
 import com.unindra.school.app.model.request.LoginRequest;
 import com.unindra.school.app.model.request.RegisterStaffRequest;
 import com.unindra.school.app.service.AuthService;
-import com.unindra.school.app.service.ComboBoxUtil;
+import com.unindra.school.app.util.ComboBoxUtil;
 import com.unindra.school.app.service.RegionService;
 import com.unindra.school.app.service.StaffService;
 

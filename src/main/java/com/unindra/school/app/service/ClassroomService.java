@@ -1,9 +1,10 @@
 package com.unindra.school.app.service;
 
-import com.unindra.school.app.model.request.DepartmentRequest;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unindra.school.app.model.response.DepartmentResponse;
+import com.unindra.school.app.model.request.ClassroomRequest;
+import com.unindra.school.app.model.response.ClassroomResponse;
 import com.unindra.school.app.model.response.WebResponse;
 import com.unindra.school.app.util.AppManager;
 import java.io.IOException;
@@ -24,17 +25,17 @@ import okhttp3.Response;
  *
  * @author rizmakiana
  */
-public class DepartmentService {
+public class ClassroomService {
     
     private final ObjectMapper om = new ObjectMapper();
     private final OkHttpClient client = new OkHttpClient();
     
-    public String add(DepartmentRequest request) throws IOException{
+    public String add(ClassroomRequest request) throws IOException {
         String jsonRequest = om.writeValueAsString(request);
                 
         RequestBody requestBody = RequestBody.create(jsonRequest, MediaType.parse("application/json"));
         Request httpRequest = new Request.Builder()
-                .url(AppManager.getWebName() + "/api/staff/departments")
+                .url(AppManager.getWebName() + "/api/staff/classrooms")
                 .header("Accept-Language", AppManager.getLocale().toLanguageTag())
                 .addHeader("Authorization", "Bearer " + AppManager.getToken().getToken())
                 .post(requestBody)
@@ -64,10 +65,10 @@ public class DepartmentService {
         }
     }
     
-    public List<DepartmentResponse> getAll() throws IOException{
+    public List<ClassroomResponse> getAll() throws IOException{
         
         Request httpRequest = new Request.Builder()
-                .url(AppManager.getWebName() + "/api/staff/departments")
+                .url(AppManager.getWebName() + "/api/staff/classrooms")
                 .addHeader("Authorization", "Bearer " + AppManager.getToken().getToken())
                 .get()
                 .build();
@@ -75,8 +76,8 @@ public class DepartmentService {
         try (Response response = client.newCall(httpRequest).execute()) {
             
             String jsonResponse = response.body().string();
-            WebResponse<List<DepartmentResponse>> webResponse = om.readValue(
-                    jsonResponse, new TypeReference<WebResponse<List<DepartmentResponse>>>() {}
+            WebResponse<List<ClassroomResponse>> webResponse = om.readValue(
+                    jsonResponse, new TypeReference<WebResponse<List<ClassroomResponse>>>() {}
             );
             
             Object errors = webResponse.getErrors();
@@ -96,9 +97,9 @@ public class DepartmentService {
         }
     }
     
-    public DepartmentResponse getByCode(String code) throws IOException{
+    public ClassroomResponse getByCode(String code) throws IOException{
         Request httpRequest = new Request.Builder()
-                .url(AppManager.getWebName() + "/api/staff/departments/" + code)
+                .url(AppManager.getWebName() + "/api/staff/classrooms/" + code)
                 .header("Accept-Language", AppManager.getLocale().toLanguageTag())
                 .addHeader("Authorization", "Bearer " + AppManager.getToken().getToken())
                 .get()
@@ -107,8 +108,8 @@ public class DepartmentService {
         try (Response response = client.newCall(httpRequest).execute()) {
             
             String jsonResponse = response.body().string();
-            WebResponse<DepartmentResponse> webResponse = om.readValue(
-                    jsonResponse, new TypeReference<WebResponse<DepartmentResponse>>() {}
+            WebResponse<ClassroomResponse> webResponse = om.readValue(
+                    jsonResponse, new TypeReference<WebResponse<ClassroomResponse>>() {}
             );
             
             Object errors = webResponse.getErrors();
@@ -125,48 +126,13 @@ public class DepartmentService {
                 throw new IOException(errorMessage);
             }
             return webResponse.getData();
-        }
-    }
-    
-    public String update(String id, DepartmentRequest request) throws IOException{
-        String jsonRequest = om.writeValueAsString(request);
-                
-        RequestBody requestBody = RequestBody.create(jsonRequest, MediaType.parse("application/json"));
-        Request httpRequest = new Request.Builder()
-                .url(AppManager.getWebName() + "/api/staff/departments/" + id)
-                .header("Accept-Language", AppManager.getLocale().toLanguageTag())
-                .addHeader("Authorization", "Bearer " + AppManager.getToken().getToken())
-                .patch(requestBody)
-                .build();
-        
-        try (Response response = client.newCall(httpRequest).execute()) {
-            
-            String jsonResponse = response.body().string();
-            WebResponse<String> webResponse = om.readValue(
-                    jsonResponse, new TypeReference<WebResponse<String>>() {}
-            );
-            
-            Object errors = webResponse.getErrors();
-            if (errors != null){
-                String errorMessage;
-                if (errors instanceof Map<?,?> map) {
-                    errorMessage = map.values().stream()
-                            .findFirst()
-                            .map(Object::toString)
-                            .orElse("Unknown error");
-                } else {
-                    errorMessage = errors.toString();
-                }
-                throw new IOException(errorMessage);
-            }
-            return webResponse.getMessage();
         }
     }
     
     public String delete(String id) throws IOException{
 
         Request httpRequest = new Request.Builder()
-                .url(AppManager.getWebName() + "/api/staff/departments/" + id)
+                .url(AppManager.getWebName() + "/api/staff/classrooms/" + id)
                 .header("Accept-Language", AppManager.getLocale().toLanguageTag())
                 .addHeader("Authorization", "Bearer " + AppManager.getToken().getToken())
                 .delete()

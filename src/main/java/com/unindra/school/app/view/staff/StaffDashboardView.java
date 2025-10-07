@@ -4,6 +4,7 @@
  */
 package com.unindra.school.app.view.staff;
 
+import com.unindra.school.app.service.ClassroomService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.unindra.school.app.service.DepartmentService;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -11,12 +12,18 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.icons.FlatSearchIcon;
 import com.unindra.school.app.entity.StaffResponse;
+import com.unindra.school.app.model.request.ClassroomRequest;
 import com.unindra.school.app.model.request.DepartmentRequest;
+import com.unindra.school.app.model.request.SectionRequest;
+import com.unindra.school.app.model.request.SectionUpdateRequest;
+import com.unindra.school.app.model.response.ClassroomResponse;
 import com.unindra.school.app.model.response.DepartmentResponse;
 import com.unindra.school.app.model.util.Gender;
 import com.unindra.school.app.model.response.RegionResponse;
-import com.unindra.school.app.service.ComboBoxUtil;
+import com.unindra.school.app.model.response.SectionResponse;
+import com.unindra.school.app.util.ComboBoxUtil;
 import com.unindra.school.app.service.RegionService;
+import com.unindra.school.app.service.SectionService;
 import com.unindra.school.app.util.AppManager;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -62,6 +69,10 @@ import javax.swing.table.TableColumnModel;
 public class StaffDashboardView extends javax.swing.JFrame {
     
     private StaffResponse staffResponse;
+    
+    DepartmentService departmentService = new DepartmentService();
+    ClassroomService classroomService = new ClassroomService();
+    SectionService sectionService = new SectionService();
 
     /**
      * Creates new form StaffDashboardView
@@ -325,21 +336,22 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailDepartmentTotalClassroomField = new javax.swing.JTextField();
         detailDepartmentUpdateButton = new javax.swing.JButton();
         detailDepartmentDeleteButton = new javax.swing.JButton();
+        detailDepartmentCodeLabel = new javax.swing.JLabel();
+        detailDepartmentCodeField = new javax.swing.JTextField();
         detailClassroom = new javax.swing.JInternalFrame();
         detailClassroomTitle = new javax.swing.JLabel();
         detailClassroomDepartmentNameLabel = new javax.swing.JLabel();
         detailClassroomGradeLabel = new javax.swing.JLabel();
-        detailDepartmentNameField1 = new javax.swing.JTextField();
         detailClassroomUpdateButton = new javax.swing.JButton();
         detailClassroomDeleteButton = new javax.swing.JButton();
         detailClassroomGradeField = new javax.swing.JComboBox<>();
         detailClassroomTotalSectionLabel = new javax.swing.JLabel();
         detailClassroomTotalSectionField = new javax.swing.JTextField();
+        detailClassroomDepartmentField = new javax.swing.JComboBox<>();
         detailSection = new javax.swing.JInternalFrame();
         detailSectionTitle = new javax.swing.JLabel();
         detailSectionDepartmentLabel = new javax.swing.JLabel();
         detailSectionGradeLabel = new javax.swing.JLabel();
-        detailSectionDepartmentField = new javax.swing.JTextField();
         detailSectionUpdateButton = new javax.swing.JButton();
         detailSectionDeleteButton = new javax.swing.JButton();
         detailSectionGradeField = new javax.swing.JComboBox<>();
@@ -347,6 +359,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailSectionNameField = new javax.swing.JTextField();
         detailSectionTotalStudentField = new javax.swing.JTextField();
         detailSectionTotalStudentLabel = new javax.swing.JLabel();
+        detailSectionDepartmentField = new javax.swing.JComboBox<>();
+        detailSectionCodeLabel = new javax.swing.JLabel();
+        detailSectionCodeField = new javax.swing.JTextField();
         addCourseTeacher = new javax.swing.JInternalFrame();
         addCourseTeacherTitleLabel = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -549,6 +564,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         classroomPanel.add(classroomPanelDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 25));
         classroomPanel.add(classroomPanelPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 50, 30, 30));
 
+        departmentTable.setAutoCreateRowSorter(true);
         departmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -559,16 +575,30 @@ public class StaffDashboardView extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        departmentTable.getTableHeader().setReorderingAllowed(false);
         departmentTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 departmentTableMouseClicked(evt);
             }
         });
         jScrollPane5.setViewportView(departmentTable);
+        if (departmentTable.getColumnModel().getColumnCount() > 0) {
+            departmentTable.getColumnModel().getColumn(0).setResizable(false);
+            departmentTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         classroomPanel.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 85, 595, 220));
 
+        classroomTable.setAutoCreateRowSorter(true);
         classroomTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -579,16 +609,34 @@ public class StaffDashboardView extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        classroomTable.setShowGrid(false);
+        classroomTable.getTableHeader().setReorderingAllowed(false);
         classroomTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 classroomTableMouseClicked(evt);
             }
         });
         jScrollPane6.setViewportView(classroomTable);
+        if (classroomTable.getColumnModel().getColumnCount() > 0) {
+            classroomTable.getColumnModel().getColumn(0).setResizable(false);
+            classroomTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            classroomTable.getColumnModel().getColumn(1).setResizable(false);
+            classroomTable.getColumnModel().getColumn(2).setResizable(false);
+            classroomTable.getColumnModel().getColumn(2).setPreferredWidth(50);
+        }
 
         classroomPanel.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 85, 595, 220));
 
+        sectionTable.setAutoCreateRowSorter(true);
         sectionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -599,13 +647,28 @@ public class StaffDashboardView extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sectionTable.getTableHeader().setReorderingAllowed(false);
         sectionTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sectionTableMouseClicked(evt);
             }
         });
         jScrollPane7.setViewportView(sectionTable);
+        if (sectionTable.getColumnModel().getColumnCount() > 0) {
+            sectionTable.getColumnModel().getColumn(0).setResizable(false);
+            sectionTable.getColumnModel().getColumn(1).setResizable(false);
+            sectionTable.getColumnModel().getColumn(2).setResizable(false);
+            sectionTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         classroomPanel.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 1200, 260));
 
@@ -1205,6 +1268,12 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         addClassroomTitlePanel.setFont(new java.awt.Font("Adwaita Sans", 1, 16)); // NOI18N
         addClassroom.getContentPane().add(addClassroomTitlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 250, 30));
+
+        addClassroomAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addClassroomAddButtonActionPerformed(evt);
+            }
+        });
         addClassroom.getContentPane().add(addClassroomAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 160, 30));
 
         addClassroomDepartmentField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1228,6 +1297,12 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         addSectionTitlePanel.setFont(new java.awt.Font("Adwaita Sans", 1, 16)); // NOI18N
         addSection.getContentPane().add(addSectionTitlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 250, 30));
+
+        addSectionAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSectionAddButtonActionPerformed(evt);
+            }
+        });
         addSection.getContentPane().add(addSectionAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 160, 30));
 
         addSectionDepartmentField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1433,15 +1508,31 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailDepartment.getContentPane().add(detailDepartmentNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 200, 30));
 
         detailDepartmentTotalClassroomLabel.setText("jLabel7");
-        detailDepartment.getContentPane().add(detailDepartmentTotalClassroomLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 105, 200, 30));
+        detailDepartment.getContentPane().add(detailDepartmentTotalClassroomLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 200, 30));
         detailDepartment.getContentPane().add(detailDepartmentNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 240, 30));
 
         detailDepartmentTotalClassroomField.setEnabled(false);
-        detailDepartment.getContentPane().add(detailDepartmentTotalClassroomField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 105, 240, 30));
-        detailDepartment.getContentPane().add(detailDepartmentUpdateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 120, 30));
-        detailDepartment.getContentPane().add(detailDepartmentDeleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 170, 120, 30));
+        detailDepartment.getContentPane().add(detailDepartmentTotalClassroomField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 240, 30));
 
-        wrapper.add(detailDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 500, 250));
+        detailDepartmentUpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailDepartmentUpdateButtonActionPerformed(evt);
+            }
+        });
+        detailDepartment.getContentPane().add(detailDepartmentUpdateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 120, 30));
+
+        detailDepartmentDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailDepartmentDeleteButtonActionPerformed(evt);
+            }
+        });
+        detailDepartment.getContentPane().add(detailDepartmentDeleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 220, 120, 30));
+
+        detailDepartmentCodeLabel.setText("jLabel7");
+        detailDepartment.getContentPane().add(detailDepartmentCodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 105, 200, 30));
+        detailDepartment.getContentPane().add(detailDepartmentCodeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 105, 240, 30));
+
+        wrapper.add(detailDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 500, 300));
 
         detailClassroom.setClosable(true);
         detailClassroom.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1458,11 +1549,14 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailClassroomGradeLabel.setText("jLabel7");
         detailClassroom.getContentPane().add(detailClassroomGradeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 105, 200, 30));
 
-        detailDepartmentNameField1.setEnabled(false);
-        detailClassroom.getContentPane().add(detailDepartmentNameField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 240, 30));
-
         detailClassroomUpdateButton.setEnabled(false);
         detailClassroom.getContentPane().add(detailClassroomUpdateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 120, 30));
+
+        detailClassroomDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailClassroomDeleteButtonActionPerformed(evt);
+            }
+        });
         detailClassroom.getContentPane().add(detailClassroomDeleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 200, 120, 30));
 
         detailClassroomGradeField.setEnabled(false);
@@ -1473,6 +1567,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         detailClassroomTotalSectionField.setEnabled(false);
         detailClassroom.getContentPane().add(detailClassroomTotalSectionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 240, 30));
+
+        detailClassroomDepartmentField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        detailClassroomDepartmentField.setEnabled(false);
+        detailClassroom.getContentPane().add(detailClassroomDepartmentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 240, 30));
 
         wrapper.add(detailClassroom, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 150, 500, 280));
 
@@ -1491,10 +1589,19 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailSectionGradeLabel.setText("jLabel7");
         detailSection.getContentPane().add(detailSectionGradeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 105, 200, 30));
 
-        detailSectionDepartmentField.setEnabled(false);
-        detailSection.getContentPane().add(detailSectionDepartmentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 240, 30));
-        detailSection.getContentPane().add(detailSectionUpdateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 120, 30));
-        detailSection.getContentPane().add(detailSectionDeleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 240, 120, 30));
+        detailSectionUpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailSectionUpdateButtonActionPerformed(evt);
+            }
+        });
+        detailSection.getContentPane().add(detailSectionUpdateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 120, 30));
+
+        detailSectionDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailSectionDeleteButtonActionPerformed(evt);
+            }
+        });
+        detailSection.getContentPane().add(detailSectionDeleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 270, 120, 30));
 
         detailSectionGradeField.setEnabled(false);
         detailSection.getContentPane().add(detailSectionGradeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 105, 240, 30));
@@ -1504,12 +1611,21 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailSection.getContentPane().add(detailSectionNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 240, 30));
 
         detailSectionTotalStudentField.setEnabled(false);
-        detailSection.getContentPane().add(detailSectionTotalStudentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 175, 240, 30));
+        detailSection.getContentPane().add(detailSectionTotalStudentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 240, 30));
 
         detailSectionTotalStudentLabel.setText("jLabel2");
-        detailSection.getContentPane().add(detailSectionTotalStudentLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 175, 200, 30));
+        detailSection.getContentPane().add(detailSectionTotalStudentLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 200, 30));
 
-        wrapper.add(detailSection, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 400, 500, 320));
+        detailSectionDepartmentField.setEnabled(false);
+        detailSection.getContentPane().add(detailSectionDepartmentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 240, 30));
+
+        detailSectionCodeLabel.setText("jLabel2");
+        detailSection.getContentPane().add(detailSectionCodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 175, 200, 30));
+
+        detailSectionCodeField.setEnabled(false);
+        detailSection.getContentPane().add(detailSectionCodeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 175, 240, 30));
+
+        wrapper.add(detailSection, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, 500, 350));
 
         addCourseTeacher.setClosable(true);
         addCourseTeacher.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1700,7 +1816,48 @@ public class StaffDashboardView extends javax.swing.JFrame {
                 response.getCode(),
                 response.getName()
             });
-        }        
+        }
+        
+        String[] depts = departmentService.getAll().stream().map(DepartmentResponse::getName).toArray(String[]::new);
+        addClassroomDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
+        detailClassroomDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
+        addSectionDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
+        detailSectionDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
+        addCourseDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
+        detailCourseDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
+    }
+    
+    private void loadClassroomsData() throws IOException{
+        
+        DefaultTableModel model = (DefaultTableModel) classroomTable.getModel();
+        model.setRowCount(0);
+        
+        List<ClassroomResponse> data = classroomService.getAll();
+        for(ClassroomResponse response : data){
+            model.addRow(new Object[]{
+                response.getCode(),
+                response.getDepartmentName(),
+                response.getName()
+            });
+        }
+        
+    }
+    
+    private void loadSectionsData() throws IOException{
+        
+        DefaultTableModel model = (DefaultTableModel) sectionTable.getModel();
+        model.setRowCount(0);
+        
+        List<SectionResponse> data = sectionService.getAll();
+        for(SectionResponse response : data){
+            model.addRow(new Object[]{
+                response.getCode(),
+                response.getDepartmentName(),
+                response.getClassroomName(),
+                response.getName()
+            });
+        }
+        
     }
     
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -1824,17 +1981,17 @@ public class StaffDashboardView extends javax.swing.JFrame {
         int row = departmentTable.getSelectedRow();
         String code = departmentTable.getValueAt(row, 0).toString();
         
-        DepartmentService service = new DepartmentService();
         DepartmentResponse department = new DepartmentResponse();
         try {
-             department = service.getByCode(code);
+             department = departmentService.getByCode(code);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
         }
         id = department.getId();
-        System.out.println("ID : " + id);
+        
         detailDepartmentNameField.setText(department.getName());
         detailDepartmentTotalClassroomField.setText(String.valueOf(department.getTotalClassroom()));
+        detailDepartmentCodeField.setText(department.getCode());
         
         detailDepartment.setVisible(true);
         detailClassroom.setVisible(false);
@@ -1848,6 +2005,21 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
     private void classroomTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classroomTableMouseClicked
         
+        int row = classroomTable.getSelectedRow();
+        String code = classroomTable.getValueAt(row, 0).toString();
+        
+        ClassroomResponse classroom = new ClassroomResponse();
+        try {
+            classroom = classroomService.getByCode(code);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        id = classroom.getId();
+        
+        detailClassroomDepartmentField.setSelectedItem(classroom.getDepartmentName());
+        detailClassroomGradeField.setSelectedItem(classroom.getName());
+        detailClassroomTotalSectionField.setText(String.valueOf(classroom.getTotalSection()));
+        
         detailDepartment.setVisible(false);
         detailClassroom.setVisible(true);
         detailSection.setVisible(false);
@@ -1859,6 +2031,23 @@ public class StaffDashboardView extends javax.swing.JFrame {
     }//GEN-LAST:event_classroomTableMouseClicked
 
     private void sectionTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sectionTableMouseClicked
+        
+        int row = sectionTable.getSelectedRow();
+        String code = sectionTable.getValueAt(row, 0).toString();
+        
+        SectionResponse section = new SectionResponse();
+        try {
+            section = sectionService.getByCode(code);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        id = section.getId();
+        
+        detailSectionDepartmentField.setSelectedItem(section.getDepartmentName());
+        detailSectionGradeField.setSelectedItem(section.getClassroomName());
+        detailSectionNameField.setText(String.valueOf(section.getName()));
+        detailSectionCodeField.setText(section.getCode());
+        detailSectionTotalStudentField.setText(String.valueOf(section.getTotalStudent()));
         
         detailDepartment.setVisible(false);
         detailClassroom.setVisible(false);
@@ -2123,6 +2312,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.PLAIN_MESSAGE);
             
+            loadDepartmentsData();
             addDepartment.setVisible(false);
             addDepartmentDepartmentField.setText("");
             addDepartmentCodeField.setText("");
@@ -2131,6 +2321,121 @@ public class StaffDashboardView extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_addDepartmentAddButtonActionPerformed
+
+    private void detailDepartmentUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailDepartmentUpdateButtonActionPerformed
+        
+        DepartmentRequest request = new DepartmentRequest();
+        request.setName(detailDepartmentNameField.getText());
+        request.setCode(detailDepartmentCodeField.getText());
+        
+        try {
+            String response = departmentService.update(id, request);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            loadDepartmentsData();
+            loadClassroomsData();
+            loadSectionsData();
+            detailDepartment.setVisible(false);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_detailDepartmentUpdateButtonActionPerformed
+
+    private void detailDepartmentDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailDepartmentDeleteButtonActionPerformed
+        try {
+            String response = departmentService.delete(id);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            loadDepartmentsData();
+
+            detailDepartment.setVisible(false);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_detailDepartmentDeleteButtonActionPerformed
+
+    private void addClassroomAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassroomAddButtonActionPerformed
+        
+        ClassroomRequest request = new ClassroomRequest();
+        request.setDepartmentName(addClassroomDepartmentField.getSelectedItem().toString());
+        request.setClassroomName(addClassroomClassroomField.getSelectedItem().toString());
+        
+        try {
+            String response = classroomService.add(request);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            loadClassroomsData();
+            addClassroom.setVisible(false);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+                
+        
+    }//GEN-LAST:event_addClassroomAddButtonActionPerformed
+
+    private void detailClassroomDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailClassroomDeleteButtonActionPerformed
+        
+        try {
+            String response = classroomService.delete(id);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            loadClassroomsData();
+            detailClassroom.setVisible(false);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_detailClassroomDeleteButtonActionPerformed
+
+    private void detailSectionUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailSectionUpdateButtonActionPerformed
+        
+        SectionUpdateRequest request = new SectionUpdateRequest();
+        request.setCode(detailSectionNameField.getText());
+        
+        try {
+            String response = sectionService.update(id, request);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            loadSectionsData();
+            detailSection.setVisible(false);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_detailSectionUpdateButtonActionPerformed
+
+    private void detailSectionDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailSectionDeleteButtonActionPerformed
+        
+        try {
+            String response = sectionService.delete(id);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            loadSectionsData();
+            detailSection.setVisible(false);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_detailSectionDeleteButtonActionPerformed
+
+    private void addSectionAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSectionAddButtonActionPerformed
+        
+        SectionRequest request = new SectionRequest();
+        request.setDepartmentName(addSectionDepartmentField.getSelectedItem().toString());
+        request.setClassroomName(addSectionClassroomField.getSelectedItem().toString());
+        
+        try {
+            String response = sectionService.add(request);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            loadSectionsData();
+            addSection.setVisible(false);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_addSectionAddButtonActionPerformed
 
     private String[] search(String[] names, String key) {
         return Arrays.stream(names)
@@ -2356,6 +2661,8 @@ public class StaffDashboardView extends javax.swing.JFrame {
         for(int i = 0; i < headerClassroom.length; i++){
             model.getColumn(i).setHeaderValue(headerClassroom[i]);
         }
+        
+        loadClassroomsData();
             
         String[] headerSection = new String[]{
             setInternationalization("section.id"),
@@ -2367,6 +2674,8 @@ public class StaffDashboardView extends javax.swing.JFrame {
         for (int i = 0; i < headerSection.length; i++) {
             model.getColumn(i).setHeaderValue(headerSection[i]);
         }
+        
+        loadSectionsData();
     }
     
     private void setUpInternalFrameClassrooms(){
@@ -2380,6 +2689,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
         detailDepartmentTitle.setText(setInternationalization("detail.department"));
         detailDepartmentNameLabel.setText(setInternationalization("department.name"));
+        detailDepartmentCodeLabel.setText(setInternationalization("department.id"));
         detailDepartmentTotalClassroomLabel.setText(setInternationalization("total.classroom"));
         detailDepartmentUpdateButton.setText(setInternationalization("edit"));
         detailDepartmentDeleteButton.setText(setInternationalization("delete"));
@@ -2388,6 +2698,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addClassroomDepartmentLabel.setText(setInternationalization("department.name"));
         addClassroomClassroomLabel.setText(setInternationalization("classroom.name"));
         addClassroomAddButton.setText(setInternationalization("add.classroom"));
+        addClassroomClassroomField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getClassroomList()));
         
         detailClassroomTitle.setText(setInternationalization("detail.classroom"));
         detailClassroomDepartmentNameLabel.setText(setInternationalization("department.name"));
@@ -2395,11 +2706,13 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailClassroomTotalSectionLabel.setText(setInternationalization("total.section"));
         detailClassroomUpdateButton.setText(setInternationalization("edit"));
         detailClassroomDeleteButton.setText(setInternationalization("delete"));
+        detailClassroomGradeField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getClassroomList()));
         
         addSectionTitlePanel.setText(setInternationalization("add.section"));
         addSectionDepartmentLabel.setText(setInternationalization("department.name"));
         addSectionClassroomLabel.setText(setInternationalization("classroom.name"));
         addSectionAddButton.setText(setInternationalization("add.section"));
+        addSectionClassroomField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getClassroomList()));
         
         detailSectionTitle.setText(setInternationalization("detail.section"));
         detailSectionDepartmentLabel.setText(setInternationalization("department.name"));
@@ -2408,7 +2721,9 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailSectionTotalStudentLabel.setText(setInternationalization("total.student"));
         detailSectionUpdateButton.setText(setInternationalization("edit"));
         detailSectionDeleteButton.setText(setInternationalization("delete"));
-    }
+        detailSectionGradeField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getClassroomList()));
+        detailSectionCodeLabel      .setText(setInternationalization("section.code"));
+   }
     
     private void setUpCourseTable(){
         String[] headerCourses = new String[]{
@@ -2433,6 +2748,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCourseCodeField.putClientProperty("JTextField.placeholderText", setInternationalization("enter.course.code"));
         addCourseNameField.putClientProperty("JTextField.placeholderText", setInternationalization("enter.course.name"));
         addCourseAddButton.setText(setInternationalization("add.course"));
+        addCourseClassroomField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getClassroomList()));
         
         detailCourseTitlePanel.setText(setInternationalization("detail.course"));
         detailCourseDepartmentLabel.setText(setInternationalization("department.name"));
@@ -2441,6 +2757,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailCourseNameLabel.setText(setInternationalization("course.name"));
         detailCourseDeleteButton.setText(setInternationalization("delete"));
         detailCourseUpdateButton.setText(setInternationalization("edit"));
+        detailCourseClassroomField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getClassroomList()));
     }
     
     private void setUpPaymentPanel(){
@@ -2798,6 +3115,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel detailCategoryTotalPaymentLabel;
     private javax.swing.JInternalFrame detailClassroom;
     private javax.swing.JButton detailClassroomDeleteButton;
+    private javax.swing.JComboBox<String> detailClassroomDepartmentField;
     private javax.swing.JLabel detailClassroomDepartmentNameLabel;
     private javax.swing.JComboBox<String> detailClassroomGradeField;
     private javax.swing.JLabel detailClassroomGradeLabel;
@@ -2818,9 +3136,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel detailCourseTitlePanel;
     private javax.swing.JButton detailCourseUpdateButton;
     private javax.swing.JInternalFrame detailDepartment;
+    private javax.swing.JTextField detailDepartmentCodeField;
+    private javax.swing.JLabel detailDepartmentCodeLabel;
     private javax.swing.JButton detailDepartmentDeleteButton;
     private javax.swing.JTextField detailDepartmentNameField;
-    private javax.swing.JTextField detailDepartmentNameField1;
     private javax.swing.JLabel detailDepartmentNameLabel;
     private javax.swing.JLabel detailDepartmentTitle;
     private javax.swing.JTextField detailDepartmentTotalClassroomField;
@@ -2838,8 +3157,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JLabel detailPaymentNameLabel;
     private javax.swing.JLabel detailPaymentTitlePanel;
     private javax.swing.JInternalFrame detailSection;
+    private javax.swing.JTextField detailSectionCodeField;
+    private javax.swing.JLabel detailSectionCodeLabel;
     private javax.swing.JButton detailSectionDeleteButton;
-    private javax.swing.JTextField detailSectionDepartmentField;
+    private javax.swing.JComboBox<String> detailSectionDepartmentField;
     private javax.swing.JLabel detailSectionDepartmentLabel;
     private javax.swing.JComboBox<String> detailSectionGradeField;
     private javax.swing.JLabel detailSectionGradeLabel;

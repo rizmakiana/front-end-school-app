@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.unindra.school.app.service;
+package com.unindra.school.app.util;
 
 import com.unindra.school.app.util.AppManager;
 import java.time.Month;
@@ -53,6 +53,10 @@ public class ComboBoxUtil {
         return IntStream.iterate(thisYear, y -> y >= thisYear - 1, y -> y - 1 )
                 .mapToObj(String::valueOf)
                 .toArray(String[]::new);
+    }
+    
+    public static String[] getClassroomList(){
+        return IntStream.rangeClosed(10, 12).mapToObj(String::valueOf).toArray(String[]::new);
     }
     
 }

@@ -3,12 +3,15 @@
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/components/RegionComboBox.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/entity/StaffResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/ClassroomRequest.java
+/home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/CourseRequest.java
+/home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/CourseUpdateRequest.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/DepartmentRequest.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/LoginRequest.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/RegisterStaffRequest.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/SectionRequest.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/request/SectionUpdateRequest.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/ClassroomResponse.java
+/home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/CourseResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/DepartmentResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/DistrictResponse.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/response/PagingResponse.java
@@ -19,6 +22,7 @@
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/model/util/Gender.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/service/AuthService.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/service/ClassroomService.java
+/home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/service/CourseService.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/service/DepartmentService.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/service/RegionService.java
 /home/rizmakiana/NetBeansProjects/front-end-school-app/src/main/java/com/unindra/school/app/service/SectionService.java

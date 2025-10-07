@@ -5,50 +5,43 @@
 package com.unindra.school.app.view.staff;
 
 import com.unindra.school.app.service.ClassroomService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.unindra.school.app.service.DepartmentService;
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.icons.FlatSearchIcon;
 import com.unindra.school.app.entity.StaffResponse;
 import com.unindra.school.app.model.request.ClassroomRequest;
+import com.unindra.school.app.model.request.CourseRequest;
+import com.unindra.school.app.model.request.CourseUpdateRequest;
 import com.unindra.school.app.model.request.DepartmentRequest;
 import com.unindra.school.app.model.request.SectionRequest;
 import com.unindra.school.app.model.request.SectionUpdateRequest;
 import com.unindra.school.app.model.response.ClassroomResponse;
+import com.unindra.school.app.model.response.CourseResponse;
 import com.unindra.school.app.model.response.DepartmentResponse;
 import com.unindra.school.app.model.util.Gender;
 import com.unindra.school.app.model.response.RegionResponse;
 import com.unindra.school.app.model.response.SectionResponse;
+import com.unindra.school.app.service.CourseService;
 import com.unindra.school.app.util.ComboBoxUtil;
 import com.unindra.school.app.service.RegionService;
 import com.unindra.school.app.service.SectionService;
 import com.unindra.school.app.util.AppManager;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.io.IOException;
-import java.rmi.registry.Registry;
 import java.text.MessageFormat;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
-import java.time.format.TextStyle;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.IntStream;
-import javax.imageio.IIOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -57,8 +50,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.JViewport;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -73,6 +64,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
     DepartmentService departmentService = new DepartmentService();
     ClassroomService classroomService = new ClassroomService();
     SectionService sectionService = new SectionService();
+    CourseService courseService = new CourseService();
 
     /**
      * Creates new form StaffDashboardView
@@ -275,12 +267,10 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCourseTitlePanel = new javax.swing.JLabel();
         addCourseDepartmentField = new javax.swing.JComboBox<>();
         addCourseClassroomField = new javax.swing.JComboBox<>();
-        addCourseCodeField = new javax.swing.JTextField();
         addCourseNameField = new javax.swing.JTextField();
         addCourseAddButton = new javax.swing.JButton();
         addCourseDepartmentLabel = new javax.swing.JLabel();
         addCourseClassroomName = new javax.swing.JLabel();
-        addCourseCodeLabel = new javax.swing.JLabel();
         addCourseNameLabel = new javax.swing.JLabel();
         registerTeacher = new javax.swing.JInternalFrame();
         registerTeacherTitleLabel = new javax.swing.JLabel();
@@ -1333,11 +1323,15 @@ public class StaffDashboardView extends javax.swing.JFrame {
 
         addCourseClassroomField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         addCourse.getContentPane().add(addCourseClassroomField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 310, 30));
-        addCourse.getContentPane().add(addCourseCodeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 310, 30));
-        addCourse.getContentPane().add(addCourseNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 310, 30));
+        addCourse.getContentPane().add(addCourseNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 310, 30));
 
         addCourseAddButton.setText("jButton1");
-        addCourse.getContentPane().add(addCourseAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 150, -1));
+        addCourseAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCourseAddButtonActionPerformed(evt);
+            }
+        });
+        addCourse.getContentPane().add(addCourseAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 150, 30));
 
         addCourseDepartmentLabel.setText("jLabel2");
         addCourse.getContentPane().add(addCourseDepartmentLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 30));
@@ -1345,11 +1339,8 @@ public class StaffDashboardView extends javax.swing.JFrame {
         addCourseClassroomName.setText("jLabel6");
         addCourse.getContentPane().add(addCourseClassroomName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, 30));
 
-        addCourseCodeLabel.setText("jLabel7");
-        addCourse.getContentPane().add(addCourseCodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 170, 30));
-
         addCourseNameLabel.setText("jLabel8");
-        addCourse.getContentPane().add(addCourseNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 170, 30));
+        addCourse.getContentPane().add(addCourseNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 170, 30));
 
         wrapper.add(addCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 115, 550, 350));
 
@@ -1673,14 +1664,23 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailCourse.getContentPane().add(detailCourseTitlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 490, 30));
 
         detailCourseDepartmentField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        detailCourseDepartmentField.setEnabled(false);
         detailCourse.getContentPane().add(detailCourseDepartmentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 310, 30));
 
         detailCourseClassroomField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        detailCourseClassroomField.setEnabled(false);
         detailCourse.getContentPane().add(detailCourseClassroomField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 310, 30));
+
+        detailCourseCodeField.setEnabled(false);
         detailCourse.getContentPane().add(detailCourseCodeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 310, 30));
         detailCourse.getContentPane().add(detailCourseNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 310, 30));
 
         detailCourseUpdateButton.setText("jButton1");
+        detailCourseUpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailCourseUpdateButtonActionPerformed(evt);
+            }
+        });
         detailCourse.getContentPane().add(detailCourseUpdateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 150, 30));
 
         detailCourseDepartmentLabel.setText("jLabel2");
@@ -1696,6 +1696,11 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailCourse.getContentPane().add(detailCourseNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 170, 30));
 
         detailCourseDeleteButton.setText("jButton1");
+        detailCourseDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detailCourseDeleteButtonActionPerformed(evt);
+            }
+        });
         detailCourse.getContentPane().add(detailCourseDeleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 150, 30));
 
         wrapper.add(detailCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 115, 550, 350));
@@ -1825,6 +1830,8 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailSectionDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
         addCourseDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
         detailCourseDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
+        registerStudentDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
+        detailStudentDepartmentField.setModel(new DefaultComboBoxModel<>(depts));
     }
     
     private void loadClassroomsData() throws IOException{
@@ -1850,6 +1857,23 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
         List<SectionResponse> data = sectionService.getAll();
         for(SectionResponse response : data){
+            model.addRow(new Object[]{
+                response.getCode(),
+                response.getDepartmentName(),
+                response.getClassroomName(),
+                response.getName()
+            });
+        }
+        
+    }
+    
+    private void loadCourseData() throws IOException{
+        
+        DefaultTableModel model = (DefaultTableModel) courseTable.getModel();
+        model.setRowCount(0);
+        
+        List<CourseResponse> data = courseService.getAll();
+        for(CourseResponse response : data){
             model.addRow(new Object[]{
                 response.getCode(),
                 response.getDepartmentName(),
@@ -2066,6 +2090,21 @@ public class StaffDashboardView extends javax.swing.JFrame {
     }//GEN-LAST:event_detailTeacherAddCourseActionPerformed
 
     private void courseTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTableMouseClicked
+        
+        int row = courseTable.getSelectedRow();
+        String code = courseTable.getValueAt(row, 0).toString();
+        CourseResponse c = new CourseResponse();
+        try {
+            c = courseService.getByCode(code);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        id = c.getId();
+        
+        detailCourseDepartmentField.setSelectedItem(c.getDepartmentName());
+        detailCourseClassroomField.setSelectedItem(c.getClassroomName());
+        detailCourseNameField.setText(c.getName());
+        detailCourseCodeField.setText(c.getCode());
         
         addCourse.setVisible(false);
         detailCourse.setVisible(true);
@@ -2437,6 +2476,57 @@ public class StaffDashboardView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addSectionAddButtonActionPerformed
 
+    private void addCourseAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseAddButtonActionPerformed
+
+        CourseRequest request = new CourseRequest();
+        request.setDepartmentName(addCourseDepartmentField.getSelectedItem().toString());
+        request.setClassroomName(addCourseClassroomField.getSelectedItem().toString());
+        request.setName(addCourseNameField.getText());
+        
+        try {
+            String response = courseService.add(request);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            addCourse.setVisible(false);
+            addCourseNameField.setText("");
+            loadCourseData();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_addCourseAddButtonActionPerformed
+
+    private void detailCourseUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailCourseUpdateButtonActionPerformed
+        
+        CourseUpdateRequest request = new CourseUpdateRequest();
+        request.setName(detailCourseNameField.getText());
+        
+        try {
+            String response = courseService.update(id, request);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            detailCourse.setVisible(false);
+            loadCourseData();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_detailCourseUpdateButtonActionPerformed
+
+    private void detailCourseDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailCourseDeleteButtonActionPerformed
+        
+        try {
+            String response = courseService.delete(id);
+            
+            JOptionPane.showMessageDialog(this, response, setInternationalization("success"), JOptionPane.INFORMATION_MESSAGE);
+            detailCourse.setVisible(false);
+            loadCourseData();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), setInternationalization("error"), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_detailCourseDeleteButtonActionPerformed
+
     private String[] search(String[] names, String key) {
         return Arrays.stream(names)
             .filter(x -> x.toLowerCase().contains(key.toLowerCase()))
@@ -2533,7 +2623,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         settingPanelPhoneNumberField.setText(staffResponse.getPhoneNumber());
         
         settingPanelDate.setSelectedItem(String.valueOf(staffResponse.getBirthDate()));
-        settingPanelMonth.setSelectedIndex(staffResponse.getBirthMonth() + 1);
+        settingPanelMonth.setSelectedIndex(staffResponse.getBirthMonth() - 1);
         settingPanelYear.setSelectedItem(String.valueOf(staffResponse.getBirthYear()));        
     }
     
@@ -2585,6 +2675,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailStudentDateField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getDateList()));
         detailStudentMonthField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getMonthList()));
         detailStudentYearField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getYearListStudent()));
+        detailStudentClassroomField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getClassroomList()));
     }
 
     private void setUpTeacherTable(){
@@ -2725,7 +2816,7 @@ public class StaffDashboardView extends javax.swing.JFrame {
         detailSectionCodeLabel      .setText(setInternationalization("section.code"));
    }
     
-    private void setUpCourseTable(){
+    private void setUpCourseTable() throws IOException{
         String[] headerCourses = new String[]{
             setInternationalization("course.id"),
             setInternationalization("department.name"),
@@ -2737,15 +2828,15 @@ public class StaffDashboardView extends javax.swing.JFrame {
         for (int i = 0; i < headerCourses.length; i++){
             model.getColumn(i).setHeaderValue(headerCourses[i]);
         }
+        
+        loadCourseData();
     }
     
     private void setUpInternalFrameCourse(){
         addCourseTitlePanel.setText(setInternationalization("add.course"));
         addCourseDepartmentLabel.setText(setInternationalization("department.name"));
         addCourseClassroomName.setText(setInternationalization("classroom.name"));
-        addCourseCodeLabel.setText(setInternationalization("course.id"));
         addCourseNameLabel.setText(setInternationalization("course.name"));
-        addCourseCodeField.putClientProperty("JTextField.placeholderText", setInternationalization("enter.course.code"));
         addCourseNameField.putClientProperty("JTextField.placeholderText", setInternationalization("enter.course.name"));
         addCourseAddButton.setText(setInternationalization("add.course"));
         addCourseClassroomField.setModel(new DefaultComboBoxModel<>(ComboBoxUtil.getClassroomList()));
@@ -3048,8 +3139,6 @@ public class StaffDashboardView extends javax.swing.JFrame {
     private javax.swing.JButton addCourseAddButton;
     private javax.swing.JComboBox<String> addCourseClassroomField;
     private javax.swing.JLabel addCourseClassroomName;
-    private javax.swing.JTextField addCourseCodeField;
-    private javax.swing.JLabel addCourseCodeLabel;
     private javax.swing.JComboBox<String> addCourseDepartmentField;
     private javax.swing.JLabel addCourseDepartmentLabel;
     private javax.swing.JTextField addCourseNameField;
